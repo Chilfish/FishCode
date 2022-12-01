@@ -1,0 +1,198 @@
+{
+  "": {
+    "body": [
+      "",
+      "<br>",
+      "",
+      "### ",
+      "",
+      "- **dashboard:** VsCode： `` ",
+      "- **文章 | 文档：** <br> ",
+      "- **流水：** ",
+      "  - "
+    ],
+    "description": "",
+    "prefix": "hell"
+  },
+  "·": {
+    "body": "``",
+    "prefix": "·"
+  },
+  "//": {
+    "body": [
+      "//"
+    ],
+    "prefix": "......"
+  },
+  "art": {
+    "body": [
+      "",
+      "<div class=\"art\">",
+      "",
+      "</div>",
+      ""
+    ],
+    "prefix": "art"
+  },
+  "br": {
+    "body": [
+      "",
+      "<br>",
+      ""
+    ],
+    "prefix": "br"
+  },
+  "C#": {
+    "body": [
+      "```cs {.line-numbers}",
+      "",
+      "```"
+    ],
+    "prefix": "cs"
+  },
+  "cmd": {
+    "body": [
+      "```shell {.line-numbers}",
+      "",
+      "```"
+    ],
+    "prefix": "shell"
+  },
+  "cpp": {
+    "body": [
+      "```cpp {.line-numbers}",
+      "",
+      "```"
+    ],
+    "prefix": "cpp"
+  },
+  "emsp": {
+    "body": "&emsp;",
+    "prefix": "kg"
+  },
+  "h5": {
+    "body": [
+      "",
+      "<div class=\"h5\">$1</div>",
+      ""
+    ],
+    "prefix": "h5"
+  },
+  "html": {
+    "body": [
+      "```html {.line-numbers}",
+      "",
+      "```"
+    ],
+    "prefix": "html"
+  },
+  "img": {
+    "body": [
+      "<div align=\"center\"><img width=\"60%\" src=\"./img/.png\"/><p>",
+      "  图片描述",
+      "</p></div><br>"
+    ],
+    "description": "",
+    "prefix": "img"
+  },
+  "Java": {
+    "body": [
+      "```Java {.line-numbers}",
+      "",
+      "```"
+    ],
+    "prefix": "java"
+  },
+  "JavaScript": {
+    "body": [
+      "```js {.line-numbers}",
+      "",
+      "```"
+    ],
+    "prefix": "js"
+  },
+  "LaTeX": {
+    "body": " $$ ",
+    "prefix": "latex"
+  },
+  "link": {
+    "body": "<a  target=\"_blank\" rel=\"noopener noreferrer\" href=\"\">$2</a>",
+    "prefix": "link"
+  },
+  "listBr": {
+    "body": " <br> &emsp;&emsp; ",
+    "prefix": "listbr"
+  },
+  "LLaTeX": {
+    "body": [
+      "$$",
+      "\\begin{align*}",
+      "",
+      "\\end{align*}",
+      "$$"
+    ],
+    "prefix": "llatex"
+  },
+  "Markdown 初始化": {
+    "body": [
+      "---",
+      "title: ",
+      "date:",
+      "---",
+      "",
+      "<br><p style=\"font-size: 32px; font-weight: bold;\">目录</p>",
+      "",
+      "<!-- @import \"[TOC]\" {cmd=\"toc\" depthFrom=2 depthTo=5 orderedList=false} -->",
+      "",
+      "<br>",
+      ""
+    ],
+    "description": "Markdown 初始化",
+    "prefix": "bt"
+  },
+  "php": {
+    "body": [
+      "```php {.line-numbers}",
+      "",
+      "```"
+    ],
+    "prefix": "php"
+  },
+  "Python": {
+    "body": [
+      "```Python {.line-numbers}",
+      "",
+      "```"
+    ],
+    "prefix": "py"
+  },
+  "SQL": {
+    "body": [
+      "```sql {.line-numbers}",
+      "",
+      "```"
+    ],
+    "prefix": "sql"
+  },
+  "table": {
+    "body": [
+      "",
+      "<div style=\"text-align: center;margin: 1rem;\">",
+      "",
+      "<span></span>",
+      " | ",
+      "| :-: | :-: |",
+      "",
+      "</div>"
+    ],
+    "prefix": "table"
+  },
+  "TypeScript": {
+    "body": [
+      "```ts {.line-numbers}",
+      "",
+      "```"
+    ],
+    "prefix": "ts"
+  }
+}

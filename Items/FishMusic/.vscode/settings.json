@@ -1,0 +1,12 @@
+{
+  "liveSassCompile.settings.formats": [
+    {
+      "format": "compressed", //可定制的出口CSS样式（expanded，compact，compressed，nested）
+      "extensionName": ".min.css" //编译后缀名
+    }
+  ],
+  "liveSassCompile.settings.excludeList": [
+    "**/node_modules/**",
+    ".vscode/**"
+  ]
+}

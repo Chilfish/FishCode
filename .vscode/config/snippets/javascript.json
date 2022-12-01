@@ -1,0 +1,16 @@
+{
+  "comment": {
+    "body": [
+      "/*",
+      "* $1 */",
+      ""
+    ],
+    "prefix": "//"
+  },
+  "console": {
+    "body": [
+      "console.log($1);"
+    ],
+    "prefix": "con"
+  }
+}

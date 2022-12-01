@@ -1,0 +1,21 @@
+{
+  "configurations": [
+    {
+      "compilerArgs": [
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic"
+      ],
+      "compilerPath": "D:\\Coding\\CodePath\\mingw64_12.2.0\\bin\\g++.exe",
+      "cppStandard": "c++17",
+      "cStandard": "c17",
+      "includePath": [
+        "${workspaceFolder}/**",
+        "${workspaceFolder}/lib/**"
+      ],
+      "intelliSenseMode": "windows-gcc-x64",
+      "name": "windows-gcc-x64"
+    }
+  ],
+  "version": 4
+}

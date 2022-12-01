@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset='UTF-8'>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />
+    <link rel='stylesheet' href='index.css'>
+    <title>添加学生信息</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>添加学生信息</h1>
+        <form>
+            <label for="stuID">学生ID：
+                <input type="text" name="stuID" id="stuID" required>
+            </label>
+            <label for="stuName">学生姓名：
+                <input type="text" name="stuName" id="stuName" required>
+            </label>
+            <label for="stuClass">学生班级：
+                <input type="text" name="stuClass" id="stuClass" required>
+            </label>
+            <label for="stuPhone">联系电话：
+                <input type="text" name="stuPhone" id="stuPhone" required>
+            </label>
+            <label>
+                <button type="submit">确认信息</button>
+            </label>
+        </form>
+        <script>
+            const form = document.querySelector('form')
+            form.onsubmit = () => {
+                form.action = "index.php";
+                form.method = "post";
+                form.submit();
+            }
+        </script>
+    </div>
+</body>
+
+</html>

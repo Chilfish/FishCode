@@ -1,0 +1,227 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  background: url(img/3.jpg) no-repeat fixed;
+  background-size: 100%;
+  background-position: 0% 50%;
+}
+
+/*
+*链接 
+*/
+/* a {
+  outline: none;
+  text-decoration: none;
+  padding: 2px 1px 0;
+}
+a:link,
+a:visited {
+  color: rgba(251, 114, 153, 0.9);
+}
+a:focus,
+a:hover {
+  background: rgba(251, 114, 153, 0.082);
+}
+a:active {
+  background: rgba(251, 114, 153, 0.26);
+  color: rgba(251, 114, 153, 0.9);
+} */
+
+/*
+*
+* 导航栏 
+*
+*/
+
+.dao {
+  height: 40px;
+  width: 480px;
+  margin: 10px auto;
+  background-color: rgba(69, 111, 189, 0.644);
+  border-radius: 5px;
+}
+.dao ul {
+  padding: 0;
+}
+.dao li {
+  float: left;
+  text-align: center;
+  line-height: 40px;
+  list-style-type: none;
+}
+.dao .dao-text {
+  display: block;
+  width: 80px;
+  padding: 0;
+  text-decoration: none;
+  color: white;
+  transform: 300ms;
+}
+.dao .dao-text:hover {
+  background: rgb(43, 85, 165);
+  color: rgb(238, 65, 94);
+  border-radius: 5px;
+}
+
+.dropdown {
+  display: inline-block;
+  position: relative;
+}
+.dropdown-box {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 100px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  padding: 12px 16px;
+  transition: all ease-in 0.3s;
+}
+.dropdown:hover .dropdown-box {
+  display: block;
+}
+.dropdown-box a:hover {
+  background-color: #f1f1f1;
+  color: black;
+}
+
+/*
+*表格*
+*/
+table {
+  border: 2px solid #ddd;
+  font-size: 0.8rem;
+  margin: 10px;
+  border-collapse: collapse;
+}
+caption {
+  font-weight: bold;
+  padding: 10px;
+}
+td,
+th {
+  border: 1px solid #ddd;
+  padding: 1em 1.5em;
+}
+thead th {
+  background-color: #eff3f5;
+}
+tr:nth-child(even) {
+  background-color: #f7f7f7;
+}
+tr:nth-child(odd) {
+  background-color: #fff;
+}
+
+/*
+
+*杂项*
+
+*/
+
+.img-cont {
+  width: 70px;
+  height: 70px;
+  padding: 15px;
+  margin: 10px;
+  border: 2px dotted black;
+  text-align: center;
+}
+.img-text {
+  font-size: 12px;
+  margin: 0;
+  color: #777d8b;
+}
+
+.inline {
+  display: inline-block;
+}
+
+.light_h1 {
+  color: #7693e4d3;
+  font-weight: 1000;
+  font-family: "kaiti", serif;
+  letter-spacing: 0.035rem;
+  line-height: 1.2;
+}
+
+h2 {
+  font-family: "fangsong";
+  color: #282c34;
+  font-weight: bold;
+}
+
+p {
+  line-height: 1.4;
+  font-weight: 500;
+  font-size: 16px;
+  text-decoration: none;
+  color: #282c34;
+  margin: 0;
+  width: fit-content;
+  height: fit-content;
+}
+
+li {
+  list-style-type: square;
+}
+
+.pic {
+  background-image: url(../img/backimg.jpg);
+  opacity: 1;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+
+.iv {
+  width: 110px;
+  height: 100px;
+  margin: 50px auto;
+  background: linear-gradient(53deg, #cccfff, #ffcccf);
+  transform: 2s;
+}
+.iv:hover {
+  width: 140px;
+  background: linear-gradient(53deg, #ffcccf, #cccfff);
+}
+
+.button {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #f4511e;
+  border: none;
+  color: #ffffff;
+  text-align: center;
+  font-size: 28px;
+  padding: 20px;
+  width: 200px;
+  transition: 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+.button span::after {
+  content: "\00bb";
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+.button:hover span {
+  padding-right: 25px;
+}
+.button:hover span::after {
+  opacity: 1;
+  right: 0;
+}

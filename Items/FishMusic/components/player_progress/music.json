@@ -1,0 +1,41 @@
+{
+  "baseUrl": "http://music.163.com/song/media/outer/url?id=",
+  "music": [
+    {
+      "name": "MILABO",
+      "id": "1462389992",
+      "artist": "ずっと真夜中でいいのに。",
+      "cover": "http://p1.music.126.net/0Pnt-WOWGSvmGznEJTOs2w==/109951165196319850.jpg?param=500y500"
+    },
+    {
+      "name": "勘ぐれい",
+      "id": "1498613705",
+      "artist": "ずっと真夜中でいいのに。",
+      "cover": "http://p1.music.126.net/sPeEYTqH0X7BI3ShtwhG4g==/109951165501139133.jpg?param=500y500"
+    },
+    {
+      "name": "丑马",
+      "id": "1837575277",
+      "artist": "ChiliChill",
+      "cover": "http://p2.music.126.net/stc352d3odufR-84-RKslw==/109951165892946846.jpg?param=500y500"
+    },
+    {
+      "name": "アンサー",
+      "id": "1501450519",
+      "artist": "花譜",
+      "cover": "http://p2.music.126.net/hMUNSi13UPCUb8m0lwrM8g==/109951165527238585.jpg?param=400y400"
+    },
+    {
+      "name": "オムライス",
+      "id": "461592391",
+      "artist": "杉恵ゆりか",
+      "cover": "http://p2.music.126.net/lyyqIUVBZesfiSLO9P5o5Q==/17716430858807275.jpg?param=500y500"
+    },
+    {
+      "name": "离去之原 吉他版",
+      "id": "437250678",
+      "artist": "hanser",
+      "cover": "http://p2.music.126.net/9GAbSb_hlXPu66HWInJOww==/109951162846052486.jpg?param=500y500"
+    }
+  ]
+}

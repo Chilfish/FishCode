@@ -1,0 +1,218 @@
+/** 主体布局 **/
+
+.main {
+  width: 95vw;
+  height: 90vh;
+}
+
+.left {
+  width: 24.6%;
+  height: 100%;
+  background: #a5aed78c;
+  border-radius: 30px 0 0 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  user-select: none;
+}
+.mid {
+  width: 0.4%;
+  height: 100%;
+  background: var(--purple);
+}
+.right {
+  width: 75%;
+  height: 100%;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+/** 左栏 **/
+
+.head {
+  width: 100%;
+  height: 30%;
+  text-align: center;
+  margin-top: 2.3rem;
+}
+.logo {
+  width: 40%;
+}
+.title {
+  color: var(--purple_deep);
+  font-weight: bolder;
+  font-size: 1.7em;
+  user-select: none;
+}
+
+.footer {
+  height: 30%;
+}
+
+/** 右边 **/
+
+.titles {
+  text-align: center;
+  margin: 0 auto 0.5rem;
+  font-size: 1.4rem;
+  font-weight: 500;
+  letter-spacing: 0.2rem;
+  cursor: pointer;
+  user-select: none;
+}
+.hr {
+  width: 90%;
+  height: 3px;
+  margin: 5px auto;
+  border-radius: 5px;
+  background-color: var(--purple_deep);
+}
+
+.select {
+  margin: 1rem 2rem;
+}
+.select label {
+  margin-right: 2rem;
+}
+
+.overflow {
+  overflow: auto;
+  height: 100%;
+  margin-bottom: 0.5rem;
+  scrollbar-width: thin; /*火狐*/
+  position: relative;
+}
+/* 谷歌 */
+.overflow::-webkit-scrollbar {
+  width: 6px;
+}
+.overflow::-webkit-scrollbar-track-piece {
+  background-color: #f0f0f0;
+  border-radius: 4px;
+  margin-right: 3px;
+}
+.overflow::-webkit-scrollbar-thumb {
+  border-radius: 2px;
+  background-color: #cdcdcd;
+}
+.overflow::-webkit-scrollbar-corner {
+  display: none;
+}
+
+/* 学生信息 */
+.info {
+  height: 20%;
+  width: 100%;
+  padding-left: 2rem;
+  font-size: 0.8rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+}
+.info div {
+  width: 33.333%;
+}
+
+.info .key {
+  display: inline-block;
+  width: 65px;
+  text-align: justify;
+  text-align-last: justify;
+}
+
+/* 表格 */
+.tables {
+  padding-top: 1rem;
+}
+table {
+  margin: 0 auto;
+}
+thead {
+  position: sticky;
+  top: -2px;
+}
+th {
+  font-size: 0.8rem;
+  letter-spacing: 0.2rem;
+  width: auto;
+  padding: 0 2rem;
+  cursor: pointer;
+  position: relative;
+  user-select: none;
+}
+td {
+  font-size: 0.7rem;
+}
+th.dig {
+  padding: 0 1rem;
+}
+th:hover {
+  background-color: #dfdfdf;
+}
+
+.sort_ico {
+  display: none;
+  background: url(../img/sort.png) center no-repeat;
+  background-size: 100%;
+  opacity: 60%;
+  width: 15px;
+  height: 13px;
+  position: absolute;
+  top: 18.5px;
+  right: 3px;
+}
+th:hover .sort_ico {
+  display: block;
+}
+
+/* 第几页 */
+.divPage {
+  height: 1.5rem;
+  margin: 0.1rem auto 0;
+  text-align: center;
+  display: flex;
+  align-content: space-between;
+  justify-content: center;
+  user-select: none;
+}
+#perPage {
+  margin-right: 2rem;
+}
+.pageNums {
+  font-size: 0.8rem;
+  margin-right: 2rem;
+}
+.printPage span {
+  margin: 0 0.2rem;
+}
+.notBtn {
+  padding: 0.2rem;
+  cursor: pointer;
+  background: #f4f4f5;
+  border: 0;
+  border-radius: 5px;
+  margin: 0 0.3rem;
+}
+.notBtn:disabled {
+  color: #c0c4cc;
+  cursor: not-allowed;
+}
+
+.tpPage {
+  font-size: 0.8rem;
+  line-height: 1.5rem;
+}
+input[name='tpPage'] {
+  width: 2rem;
+  margin: 0 5px 0 1px;
+  font-size: 0.7rem;
+  text-align: center;
+  border: none;
+  border-bottom: 1px solid #000;
+}
+input[name='tpPage']:focus {
+  outline-style: none;
+}

@@ -1,0 +1,185 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+}
+
+/*
+* 颜色
+*/
+:root {
+  --purple: #ac9bb5;
+  --purple_deep: #36447b;
+  --blue: #648ab9;
+  --grey: #d2dbf4;
+  --blue_green: #79abd7;
+  --blue_green_deep: #4f7293;
+}
+
+/*
+*表格*
+*/
+table {
+  border: 1px solid #ddd;
+  font-size: 0.8rem;
+  margin: 10px;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+caption {
+  font-weight: bold;
+  padding: 10px;
+}
+
+td,
+th {
+  border: 1px solid #ddd;
+  width: auto;
+  height: 2.5rem;
+  padding: 0 0.5rem;
+}
+
+thead th {
+  background-color: #eff3f5;
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+tr:nth-child(odd) {
+  background-color: #fff;
+}
+
+tr:hover {
+  background-color: #f0f1f2;
+}
+
+/*
+* 链接
+*/
+a {
+  font-weight: bold;
+  outline: none;
+  text-decoration: none;
+}
+
+a:link,
+a:visited {
+  color: var(--purple_deep);
+}
+
+a:active,
+a:focus,
+a:hover {
+  color: var(--blue_green);
+  text-decoration: underline;
+}
+
+ul,
+li {
+  box-sizing: content-box;
+}
+
+/** 该项目 **/
+.link {
+  cursor: pointer;
+  font-weight: bold;
+  color: var(--purple_deep);
+}
+
+.link:hover {
+  color: var(--purple_deep);
+  text-decoration: underline;
+}
+
+.app {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+}
+
+.back {
+  width: 100%;
+  height: 100%;
+  background: url(../img/back.png) no-repeat;
+  background-size: 100%;
+  filter: blur(5px);
+  z-index: -1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  transform: scale(1.2);
+}
+
+.main {
+  background: #fff;
+  border-radius: 30px;
+  box-shadow: 8px 10px 6px rgba(0, 0, 0, 0.028),
+    14px 18px 15px rgba(0, 0, 0, 0.04), 22px 27px 29px rgba(0, 0, 0, 0.052),
+    44px 55px 69px rgba(0, 0, 0, 0.08);
+
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.footer {
+  width: 100%;
+  height: 25%;
+  padding: 0 3rem;
+}
+
+.footer * {
+  margin: 0.6rem auto;
+  font-size: 0.9rem;
+}
+
+/*按钮们*/
+
+.buttons {
+  width: 100%;
+  height: 40%;
+  text-align: center;
+  font-size: 0.8rem;
+  letter-spacing: 0.2rem;
+  line-height: 7.5vh;
+  margin-top: 1.7rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.button {
+  width: 45%;
+  height: 25%;
+  margin: 5% auto;
+  border-radius: 10px;
+  border: 2px solid var(--blue_green_deep);
+  color: var(--blue_green_deep);
+  background-color: #fff;
+  cursor: pointer;
+  display: block;
+  transition: ease-in 0.2s;
+}
+
+.button.active {
+  background: var(--blue_green_deep);
+  color: #fff;
+}
+
+.button:hover {
+  transform: scale(1.03);
+  background: var(--blue_green_deep);
+  color: #fff;
+}
+
+input[type="radio"] {
+  position: absolute;
+  clip: rect(0, 0, 0, 0);
+}

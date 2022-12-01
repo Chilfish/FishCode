@@ -1,0 +1,19 @@
+{
+  "Comment": {
+    "body": [
+      "/**",
+      "* @brief $1",
+      "*/"
+    ],
+    "prefix": "//"
+  },
+  "Timer": {
+    "body": [
+      "clock_t tt = clock(); {",
+      "  $0",
+      "}",
+      "printf(\"\\nTime spent: %.4f s\\n\", (clock()-tt) / 1000.);"
+    ],
+    "prefix": "tcount"
+  }
+}

@@ -1,0 +1,9 @@
+$fish-primary: #bd7baa;
+
+@forward 'element-plus/theme-chalk/src/common/var.scss' with (
+  $colors: (
+    'primary': (
+      'base': $fish-primary,
+    ),
+  )
+);

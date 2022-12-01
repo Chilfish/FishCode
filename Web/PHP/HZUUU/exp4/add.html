@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset='UTF-8'>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes"/>
+    <script src=''></script>
+    <link rel='stylesheet' href='../../styles/Template.css'>
+    <link rel='icon' href='../../img/bili.ico'>
+    <style>
+        .app {
+            display: flex;
+            flex-direction: column;
+            margin: 3em;
+            letter-spacing: 0.1em;
+        }
+
+        form {
+            margin: 2em 0;
+            width: 25%;
+        }
+
+        input[type="submit"] {
+            margin: 0;
+        }
+    </style>
+    <title>添加员工信息</title>
+</head>
+
+<body>
+<div class="app">
+    <h1>添加员工信息</h1>
+    <form action="add.php" method="post">
+        <label for="name">
+            <span>员工姓名：</span>
+            <input type="text" name="name" id="name">
+        </label>
+        <label for="age">
+            <span>员工年龄：</span>
+            <input type="text" name="age" id="age">
+        </label>
+        <label for="salary">
+            <span>员工工资：</span>
+            <input type="text" name="salary" id="salary">
+        </label>
+        <input type="submit" value="上传数据">
+    </form>
+</div>
+</body>
+
+</html>

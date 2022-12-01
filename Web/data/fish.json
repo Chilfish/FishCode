@@ -1,0 +1,16 @@
+{
+  "data": {
+    "age": 14,
+    "name": "fish",
+    "school": {
+      "degree": "first",
+      "major": "CS",
+      "name": "HZU"
+    }
+  },
+  "date": "2022-05-04",
+  "lang": {
+    "blue": ["哇", "嘶", "唔", "呼"]
+  },
+  "message": "success"
+}

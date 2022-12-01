@@ -1,0 +1,54 @@
+.body {
+  margin: 2em auto;
+}
+.body li {
+  width: 100%;
+  margin: 1em 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.body span {
+  display: inline-block;
+  margin: 0 0.5em;
+  width: 7em;
+  height: 2em;
+  line-height: 2em;
+  border-radius: 5px;
+  background-color: rgb(227, 228, 228);
+}
+.body > div {
+  transition: all ease-in 0.5s;
+}
+
+:root {
+  --blue_green_deep: #4f7293;
+}
+
+button {
+  width: 6em;
+  height: 2em;
+  margin: 0 0.5em;
+  border-radius: 6px;
+  border: 2px solid var(--blue_green_deep);
+  color: var(--blue_green_deep);
+  background-color: #fff;
+  cursor: pointer;
+  display: block;
+  transition: ease-in 0.2s;
+}
+
+button.active {
+  background: var(--blue_green_deep);
+  color: #fff;
+}
+
+button:hover {
+  transform: scale(1.03);
+  background: var(--blue_green_deep);
+  color: #fff;
+}
+
+h1 {
+  margin-bottom: 1em;
+}

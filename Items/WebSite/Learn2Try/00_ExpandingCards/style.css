@@ -1,0 +1,60 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  /* 要指定高度和宽度才能居中 */
+  overflow: hidden;
+  margin: 0;
+  background: linear-gradient(to right, #ada996, #f2f2f2, #dbdbdb, #eaeaea);
+}
+
+.container {
+  width: 90vw;
+  display: flex;
+}
+
+.card {
+  background: cover center no-repeat;
+  height: 80vh;
+  border-radius: 20px;
+  color: #fff;
+  cursor: pointer;
+  flex: 0.5;
+  margin: 8px;
+  position: relative;
+  transition: all 0.4s ease-in;
+}
+
+.card p {
+  font-size: 20px;
+  letter-spacing: 5px;
+  writing-mode: vertical-rl;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  margin: 0;
+  opacity: 0;
+}
+
+.card.select {
+  flex: 4;
+}
+.card.select p {
+  opacity: 1;
+  transition: opacity 0.3s ease-in 0.4s;
+}
+
+@media (max-width: 480px) {
+  .container {
+    width: 100vw;
+  }
+  .card:nth-of-type(4),
+  .card:nth-of-type(5) {
+    display: none;
+  }
+}

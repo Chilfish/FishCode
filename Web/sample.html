@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>这是网页标题</title>
+  <link rel="icon" href="img/bili.ico" sizes="30x30">
+  <link rel="stylesheet" href="styles/Template.css">
+  <link rel="stylesheet" href="styles/sample.css">
+  <style>
+    body {
+      /* display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center; */
+      width: 1000px;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="dao">
+    <ul>
+      <li>
+        <div class="dropdown">
+          <a class="dao-text" href="#">导航栏</a>
+          <div class="dropdown-box">
+            <a href="#">哇！好耶</a>
+            <a href="#">哇！好耶</a>
+            <a href="#">哇！好耶</a>
+          </div>
+        </div>
+      </li>
+      <li><a class="dao-text" href="#">大新闻</a></li>
+      <li><a class="dao-text" href="#">大新闻</a></li>
+      <li><a class="dao-text" href="#">大新闻</a></li>
+      <li><a class="dao-text" href="#">大新闻</a></li>
+      <li><a class="dao-text" href="#">大新闻</a></li>
+    </ul>
+  </div>
+  <div class="toc">
+    <h2>目录</h2>
+    <ul>
+      <li><a href="#media">媒体</a></li>
+      <li><a href="#table">表格</a></li>
+      <li><a href="#form">表单</a></li>
+    </ul>
+  </div>
+
+  <p>引用链接时这样: <a href="sample.html" title="这是悬停链接时的文本">首页</a></p>
+  <p>图片链接:<br /> <a href="sample.html"> <img src="img/2.jpg" height="50" alt="图片显示不出时的提示"> </a></p>
+
+  <p>
+    <em>em</em>是斜体，<strong>strong</strong>和<b>b</b>是加粗，<del>del</del>是删除线，<u>u</u>是下划线<br />
+    "&lt;!-- xxx -->"是注释<br />
+    然后, &nbsp; 是 & nbsp; 、 &lt; 是 & lt; 、 &gt; 是 & lt; 、&amp; 是 &amp; 、 &quot; 是 & quot; 、 &apos; 是 & apos;
+  </p>
+
+  <div class="list">
+    <p>下面是无序列表</p>
+    <ul>
+      <li>无序列表的内容</li>
+      <li>内容2</li>
+    </ul>
+    <p>然后是有序列表</p>
+    <ol>
+      <li>列表内容</li>
+      <li>列表2</li>
+    </ol>
+    <p>描述列表：</p>
+    <ul>
+      <li>
+        <dl>
+          <dt>定义名称</dt>
+          <dd>定义内容：众所周知，大家都明白描述是怎么一回事，但还是有很多人不清楚定义究竟是什么.<br />
+            那么让我们来了解一下定义究竟是怎么一回事吧。</dd>
+        </dl>
+      </li>
+      <li>
+        <dl>
+          <dt>又一个定义</dt>
+          <dd>然后还是定义内容</dd>
+        </dl>
+      </li>
+    </ul>
+  </div>
+
+  <div class="quote">
+    <p>块引用：</p>
+    <blockquote cite="sample.html">
+      这是一段块引用
+      <p>lalala</p>
+    </blockquote>
+    <p>然后这是行内引用: <q cite="sample.html">引用了什么捏</q>（&lt;q&gt;是不用跨行的短引用）</p>
+    <p>带显示链接的引用: 引用自<a href="sample.html"> <cite>好耶</cite></a></p>
+    <p>缩略语：<abbr title="这是展开式">这是缩写</abbr></p>
+  </div>
+
+  <address>
+    <p>这是作者的联系方式：<a href="mailto:notfound405@qq.com" title="404被抢注了所以......">Organic_Fish</a></p>
+  </address>
+
+  <dl>
+    <dt>上下标：</dt>
+    <dd>C<sub>2</sub>H<sub>5</sub>O , <var>x<sup>2</sup>+3x</var></dd>
+  </dl>
+
+  <div class="zhuyin">
+    <p>这里是
+      <ruby>
+        <rb>注音</rb>
+        <rt style="font-size:0.75em">zhu yin</rt>
+      </ruby>
+      ：
+      <ruby>
+        <rb>大好</rb>
+        <rt style="font-size:0.75em">だいす</rt>
+      </ruby>
+      きだがら
+    </p>
+  </div>
+
+  <p>代码块：
+  <pre><code>       cout << "是放代码，不过纯HTML并不能高亮语法";</code></pre>
+  </p>
+
+  <p>时间显示：<time datetime="2022-02-01">2022-02-01</time></p>
+
+  <article>
+    <p>假装这是一篇</p>
+    <p>很长的博文article</p>
+  </article>
+
+  <p>span：<span class="notee">是行内无语义元素（通常结合CSS）</span></p>
+
+  <div class="suibianxiexie">
+    <h2>段间无语义元素</h2>
+    <ul>
+      <li>
+        <p><a href="sample.html"><strong>什么都可以放</strong></a></p>
+      </li>
+    </ul>
+    <p>其实就是一个集合块</p>
+  </div>
+
+  <div class="videos" id="media">
+    <figure>
+      <p>这是image</p>
+      <img src="img/1.jpg" alt="" height="100">
+      <figcaption>这是是</figcaption>
+    </figure>
+    <p>这是video</p>
+    <video height="200" controls>
+      <source src="datas/media/sample.mp4" type="video/mp4">
+      <p>dadas </p>
+    </video>
+    <p>然后是audio</p>
+    <audio controls>
+      <source src="datas/media/warma - Alice.mp3" type="audio/mp3">
+    </audio>
+  </div><br />
+
+  <div class="table" id="table">
+    <table>
+      <caption>lihua's weekend</caption>
+      <thead>
+        <tr>
+          <th>name</th>
+          <th>first</th>
+          <th>second</th>
+          <th>third</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>lihua</td>
+          <td>C++</td>
+          <td>HTML</td>
+          <td>play</td>
+        </tr>
+        <tr>
+          <td>lihua</td>
+          <td>C++</td>
+          <td>HTML</td>
+          <td>play</td>
+        </tr>
+        <tr>
+          <td>lihua</td>
+          <td>C++</td>
+          <td>sML</td>
+          <td>play</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <hr />
+
+  <h2>表单：</h2>
+  <div class="form" id="form">
+    <form>
+      <div class="item username status-box">
+        <input type="text" value="" placeholder="你的手机号/邮箱" id="login-username" class="">
+      </div>
+      <div class="text clearfix">
+        <p class="tips"></p>
+      </div>
+      <!--Password ↓-->
+      <div class="item password status-box">
+        <input type="password" placeholder="密码" id="login-passwd" class="">
+      </div>
+      <div class="text clearfix">
+        <p class="tips"></p>
+      </div>
+      <!---->
+      <div>
+        <button type="submit">Login</button>
+        <button type="submit">Register</button>
+      </div>
+    </form>
+  </div>
+
+  <div>
+    <br />
+    <p>一些其他的表单</p>
+    <form>
+      <ul>
+        <li>
+          <div class="checkbox">
+            <p><input type="checkbox" id="test1"><label for="test1">True</label></p>
+          </div>
+        </li>
+        <li>
+          <label>
+            <input type="radio" name="options">单选
+          </label>
+          <label>
+            <input type="radio" name="options">单选
+          </label>
+        </li>
+        <li>
+          <div class="datetime">
+            <p><input type="datetime-local"></p>
+          </div>
+        </li>
+        <li>
+          <div class="selection">
+            <p><label for="test2">User: </label>
+              <select id="test2" name=userselect>
+                <option value="ra">ra</option>
+                <option value="da">da</option>
+                <option value="fa">fa</option>
+              </select>
+            </p>
+          </div>
+        </li>
+        <li>
+          <div class="search">
+            <p><input type="search" name="search"><button type="search">搜索</button></p>
+          </div>
+        </li>
+        <li>
+          <div class="range">
+            <p> <input type="range" name="beans" id="beans" min="0" max="500" step="10"></p>
+          </div>
+        </li>
+        <li>
+          <div class="color">
+            <p>拾色器： <input type="color" name="color" id="color"></p>
+          </div>
+        </li>
+        <li>
+          <div class="file">
+            <p>请选择图像文件：<input type="file" name="file" id="file" accept="image/*" multiple></p>
+          </div>
+        </li>
+        <li>
+          <div class="img">
+            <p><input type="image" alt="Click me!" src="img/2.jpg" height="50" /></p>
+          </div>
+        </li>
+        <li>
+          <div class="progress">
+            <p><progress max="100" value="75">75%</progress>
+              <meter min="0" max="100" value="75" low="33" high="66" optimum="50">75</meter>
+            </p>
+          </div>
+        </li>
+      </ul>
+    </form>
+  </div>
+  <br><br>
+  <hr>
+
+  <div style="display:flex; justify-content:center">
+    <div class="img-cont">
+      <img width="60px" src="img/2.jpg">
+      <div class="img-text">这是什么呢</div>
+    </div>
+    <div style="padding:10px">
+      <p>然后这是别的框然后这是别的框然后这是别的框然后这</p>
+      <p> 是别的框然后这是别的框然后这是别的框</p>
+    </div>
+    <div class="img-cont">
+      <img width="60px" src="img/2.jpg">
+      <div class="img-text">这是什么呢</div>
+    </div>
+  </div>
+  <div class="iv"></div>
+  <hr>
+
+  <button class="button" style="vertical-align:middle"><span>悬停</span></button><br>
+
+  <div style="width: 100px; height: 100px; background: pink; padding: 45px 40px ;">
+    <div style="width: 20px; height: 10px; background: black;"></div>
+  </div>
+
+  <br><br><br><br>
+
+</body>
+
+</html>

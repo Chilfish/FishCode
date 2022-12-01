@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="属实是学习HTML+CSS的初期产物了）））">
+  <title>动态首页</title>
+  <link href="img/bili.ico" rel="icon">
+  <link href="bili.css" rel="stylesheet">
+  <script src="bili.js"></script>
+</head>
+
+<body>
+  <div class="app">
+    <div class="header-box-con">
+      <div class="header-box">
+        <div class="header-link">
+          <ul class="header-link-ul">
+            <li class="header-link-item ">
+              <span>
+                <a class="left-logo" href="https://bilibili.com">
+                  <img class="logo" src="img/bili-logo.svg" alt="">
+                  主站
+                </a>
+              </span>
+            </li>
+            <li class="header-link-item">
+              <a href="">番剧</a>
+            </li>
+            <li class="header-link-item">
+              <a href="">游戏中心</a>
+            </li>
+            <li class="header-link-item">
+              <a href="">直播</a>
+            </li>
+            <li class="header-link-item">
+              <a href="">会员购</a>
+            </li>
+            <li class="header-link-item">
+              <a href="">漫画</a>
+            </li>
+            <li class="header-link-item">
+              <a href="">拜年祭</a>
+            </li>
+          </ul>
+        </div>
+        <div class="block"></div>
+        <div class="search-box">
+          <form class="search-form">
+            <label>
+              <input class="search-text" type="text" autocomplete="off" placeholder="你所热爱的生活都在b站">
+            </label>
+            <div class="search-icon-box">
+              <img width="30px" height="30px" src="img/search.svg" alt="">
+            </div>
+          </form>
+        </div>
+        <div class="block"></div>
+        <div class="header-link">
+          <ul class="header-link-ul">
+            <li class="header-link-item ">
+              <img class="header-user" src="img/fish.jpg" alt="">
+            </li>
+            <li class="header-link-item">
+              <a href="">大会员</a>
+            </li>
+            <li class="header-link-item">
+              <a href="">消息</a>
+            </li>
+            <li class="header-link-item">
+              <a href="">动态</a>
+            </li>
+            <li class="header-link-item">
+              <a href="">收藏</a>
+            </li>
+            <li class="header-link-item">
+              <a href="">历史</a>
+            </li>
+            <li class="header-link-item">
+              <a href="">创作中心</a>
+            </li>
+            <li class="header-link-item">
+              <span class="upper">投稿</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="home-content">
+      <div class="home-box">
+
+        <div class="left-box">
+          <div class="user-box">
+            <div><img class="user-background" src="img/user-back.jpg" alt=""></div>
+            <div class="user-head-con">
+              <a href=""><img class="header-user-box" src="img/fish.jpg" alt=""></a>
+            </div>
+            <div class="left-user-name">
+              <a class="left-name" href="">有机鱼</a>
+            </div>
+            <div class="left-info-box">
+              <a class="left-info">
+                <p class="left-num">233</p>
+                <p class="left-text">关注</p>
+              </a>
+              <a class="left-info">
+                <p class="left-num">233</p>
+                <p class="left-text">粉丝</p>
+              </a>
+              <a class="left-info">
+                <p class="left-num">233</p>
+                <p class="left-text">动态</p>
+              </a>
+            </div>
+          </div>
+
+          <div class="live-box">
+            <div class="live-title">
+              <p style="margin: 0;">
+                <span class="live-title-text">正在直播</span>
+                <span class="live-num">(1)</span>
+              </p>
+              <a class="live-more" href="">更多 ></a>
+            </div>
+            <div class="live-up">
+              <div>
+                <a href=""><img class="live-img" src="img/fish.jpg" alt=""></a>
+              </div>
+              <a href="">
+                <div>有机鱼</div>
+                <div class="live-info">
+                  <p style="margin: 3px 0;">哔哩哔哩 干杯 ( ゜- ゜)つロ</p>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="update-card" onclick="updatebar()">
+            <p>更新动态</p>
+          </div>
+        </div>
+
+        <div class="middle-box">
+          <div class="post-box">
+          </div>
+
+          <div class="tab-bar">
+            <div class="tab">
+              <a class="tab-text select">全部</a>
+            </div>
+            <div class="tab">
+              <a class="tab-text unselect">投稿视频</a>
+            </div>
+            <div class="tab">
+              <a class="tab-text unselect">追番追剧</a>
+            </div>
+            <div class="tab">
+              <a class="tab-text unselect">专栏</a>
+            </div>
+          </div>
+
+          <div class="new-space" onclick="updatecard()">
+            有新动态，点击查看
+          </div>
+          <div id="card-content">
+            <div class="new-card">
+              <a class="user-head-container" href="https://space.bilibili.com/8047632">
+                <div class="user-head" style="background-image: url('img/bilidanmu.jpg');">
+                </div>
+              </a>
+              <div class="card-main">
+                <div class="username">
+                  <a class="user-name" href="https://space.bilibili.com/8047632">哔哩哔哩弹幕网</a>
+                </div>
+                <div class="more">
+                  <a class="more-" href="">⋮</a>
+                </div>
+                <div class="card-time">
+                  <a class="time" href="">刚刚</a>
+                </div>
+                <div class="cardcontent">
+                  <div class="card-text">
+                    哔哩哔哩 干杯 ( ゜- ゜)つロ
+                  </div>
+                  <!--只会做纯文本hh-->
+                  <div class="card-repost"></div>
+                  <div class="card-viode"></div>
+                  <div class="card-image"></div>
+                  <div class="card-article"></div>
+                  <div class="card-audio"></div>
+                </div>
+                <div class="card-button">
+                  <div class="button-con">
+                    <span class="button-card repose"></span>
+                    <span class="repose">转发</span>
+                  </div>
+                  <div class="button-con">
+                    <span class="button-card comment"></span>
+                    <span class="comment">评论</span>
+                  </div>
+                  <div class="button-con">
+                    <span class="button-card like"></span>
+                    <span>点赞</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="new-card">
+              <a class="user-head-container" href="">
+                <div class="user-head" style="background-image: url('img/fish.jpg');">
+                </div>
+              </a>
+              <div class="card-main">
+                <div class="username">
+                  <a class="user-name" href="">有机鱼</a>
+                </div>
+                <div class="more">
+                  <a class="more-" href="">⋮</a>
+                </div>
+                <div class="card-time">
+                  <a class="time" href="">刚刚</a>
+                </div>
+                <div class="cardcontent">
+                  <div class="card-text">
+                    咩！(*ﾟ∇ﾟ)
+                  </div>
+                  <!--只会做纯文本hh-->
+                  <div class="card-repost"></div>
+                  <div class="card-viode"></div>
+                  <div class="card-image"></div>
+                  <div class="card-article"></div>
+                  <div class="card-audio"></div>
+                </div>
+                <div class="card-button">
+                  <div class="button-con">
+                    <span class="button-card repose"></span>
+                    <span class="repose">转发</span>
+                  </div>
+                  <div class="button-con">
+                    <span class="button-card comment"></span>
+                    <span class="comment">评论</span>
+                  </div>
+                  <div class="button-con">
+                    <span class="button-card like"></span>
+                    <span>点赞</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="right-box">
+          <div class="notice-box">
+            <p class="notice-text">公告栏</p>
+            <a class="notice-img-container" href="" title="点击进入">
+              <div class="notice-img" style="background-image: url('img/notice.png');">
+              </div>
+            </a>
+          </div>
+          <div class="topic-box">
+            <p class="topic-title">话题</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</body>
+
+</html>

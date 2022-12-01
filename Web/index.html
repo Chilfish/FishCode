@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html class="light-mode">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />
+  <meta name="description" content="咩咩">
+
+  <script async src="styles/jquery-3.6.0.min.js"></script>
+  <script async src="styles/axios.min.js"></script>
+
+  <script defer src="styles/index.js"></script>
+  <script defer src="./Browser.js"></script>
+
+  <link rel="stylesheet" href="styles/Template.css" />
+  <!-- ↓需要先编译 ./style/index.scss -->
+  <link rel="stylesheet" href="styles/index.min.css" />
+
+  <link rel="icon" href="img/waiting.svg" />
+  <title>堆......</title>
+</head>
+
+<body>
+  <div>
+    <span id="hid" data-ables-id="hid_ans"><b>点击切换</b></span>
+    <span id="hid_ans" hidden>mie!</span>
+    <script>
+      hid.addEventListener(
+        'click',
+        (e) => {
+          let id = e.target.closest('span').dataset.ablesId;
+          if (!id) return;
+          let elem = document.getElementById(id);
+          elem.hidden = !elem.hidden;
+        },
+        false
+      );
+    </script>
+  </div>
+
+  <div>
+    <div>
+      <b>键盘事件：</b>
+      <label for="kinput">
+        <input type="text" placeholder="按下键盘~" id="kinput" />
+      </label>
+      <input type="button" id="clear" value="清除" />
+    </div>
+    <label for="area"><textarea id="area" readonly></textarea></label>
+    <script>
+      area.value = kinput.value = '';
+      kinput.onkeydown = kinput.onkeyup = kinput.onkeypress = handle;
+      let lastTime = Date.now();
+      function handle(e) {
+        if (area.value && Date.now() - lastTime > 250)
+          area.value += new Array(20).join('-') + '\n';
+        lastTime = Date.now();
+        let text = e.type + ' key=' + e.key + '\n';
+        if (!e.repeat) area.value += text;
+      }
+      clear.addEventListener('click', () => {
+        area.value = kinput.value = '';
+      });
+    </script>
+  </div>
+
+  <div>
+    <div>拖动阻止了 ↓</div>
+    <img src="img/waiting.svg" />
+  </div>
+
+  <div>
+    <span><b>时间~ </b><span id="clock"></span></span>
+  </div>
+  <div>
+    <p class="time jstime" data-time="2070-01-01 00:00:00">剩余 00:00:00</p>
+    <canvas id="myCanvas0" width="400" height="300"></canvas>
+  </div>
+
+  <div id="tables"></div>
+
+  <div class="comments">
+    <div class="post">
+      <textarea rows="5" cols="50" id="txt"></textarea>
+      <button id="btn">发表评论</button>
+    </div>
+    <div id="ul"></div>
+  </div>
+
+  <div class="wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><input id="check_all" type="checkbox" title="全选" /></th>
+          <th>4343</th>
+          <th>er34</th>
+        </tr>
+      </thead>
+      <tbody id="check_dan">
+        <tr>
+          <td><input type="checkbox" /></td>
+          <td>fgh</td>
+          <td>永fg</td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" /></td>
+          <td>gfhfg</td>
+          <td>fgh</td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" /></td>
+          <td>fgh</td>
+          <td>erert</td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" /></td>
+          <td>f</td>
+          <td>234</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="star">
+    <ul class="comment">
+      <li>☆</li>
+      <li>☆</li>
+      <li>☆</li>
+      <li>☆</li>
+      <li>☆</li>
+    </ul>
+  </div>
+
+  <div id="page">
+    <div id="import"></div>
+    <div id="content">
+      <input type="text" name="dan" id="text" placeholder="发送弹幕，与小伙伴一起互动！" />
+      <button id="btn1">发射</button>
+    </div>
+  </div>
+
+  <div class="search">
+    jq模糊搜索： <input type="text" id="filter" placeholder=" " />
+    <ul class="person">
+      <li data-models="'王明', 25, '网络工程', '篮球'">王明</li>
+      <li data-models="'张华', 23, '软件工程', '足球'">张华</li>
+      <li data-models="'张华', 24, '计算机科学技术', '篮球'">王丽</li>
+      <li data-models="'王大牛', 25, '网络工程', '篮球'">王大牛</li>
+      <li data-models="'王小二', 25, '机电自动化', '篮球'">王小二</li>
+      <li data-models="'张丽', 24, '机电自动化', '篮球'">张丽</li>
+    </ul>
+  </div>
+
+  <div class="Vue_js">
+    <div>原生js实现一些 Vue：</div>
+    <div>
+      计数按钮： <button class="cntBtn">Count is: 0</button>
+      <script>
+        let cnt = 0;
+        $('.cntBtn').click(function () {
+          this.innerHTML = `Count is: ${++cnt}`;
+        });
+      </script>
+    </div>
+    <div>
+      动态URL： <input type="url" autocomplete="off" /> <a href="#">#</a>
+      <script>
+        $('input[type="url"]')[0].oninput = function () {
+          const a = $(this).next()[0],
+            val = $(this).val();
+          a.href = a.innerHTML = val;
+        };
+      </script>
+    </div>
+  </div>
+
+  <div style="padding: 0 auto; text-align: center">
+    <img style="
+            border-radius: 0.3125em;
+            box-shadow: 0 2px 4px 0 rgba(34, 36, 38, 0.12),
+              0 2px 10px 0 rgba(34, 36, 38, 0.08);
+          " src="./img/1.jpg" width="10%" />
+    <br />
+    <div style="
+            border-bottom: 1px solid #d9d9d9;
+            display: inline-block;
+            color: #999;
+            padding: 2px;
+          ">
+      在这里插入图片注释
+      <a href="http://" target="_blank" rel="noopener noreferrer"></a>
+    </div>
+  </div>
+
+  <div class="navList">
+    <ul>
+      <li>
+        <dl>
+          <dt>前端</dt>
+          <dd>HTML</dd>
+          <dd>CSS</dd>
+          <dd>JavaScript</dd>
+        </dl>
+        <dl>
+      </li>
+      <li>
+        <dt>其他语言</dt>
+        <dd>CPP</dd>
+        <dd>Java</dd>
+        <dd>Python</dd>
+        </dl>
+      </li>
+      <li>
+        <dl>
+          <dt>课程</dt>
+          <dd>计算机网络</dd>
+          <dd>数据结构（C++ 描述）</dd>
+          <dd>Linux</dd>
+        </dl>
+      </li>
+    </ul>
+  </div>
+
+
+  <div>
+    <form id="FishSearch">
+      <input type="search" id="">
+    </form>
+    <script>
+      const URL = 'https://www.bing.com/search?form=MOZLBR&pc=MOZI&q=';
+      const input = document.querySelector('#FishSearch>input');
+      document.querySelector('#FishSearch').onsubmit = () => {
+        window.location.href = URL + input.value;
+      }
+    </script>
+  </div>
+
+  <img src="img/cat.gif" alt="" id="top" />
+  <div class="scroller">
+    <span><b>滚动坐标：</b></span> <span id="showScroll">0px</span>
+  </div>
+
+</body>
+
+</html>

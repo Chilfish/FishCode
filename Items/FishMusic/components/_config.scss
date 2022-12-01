@@ -1,0 +1,51 @@
+$primary_color: #88677e;
+$primary_hover: #4c729b;
+
+:root {
+  --bs-blue: #324b66;
+  --bs-indigo: #6610f2;
+  --bs-purple: #6f42c1;
+  --bs-pink: #d63384;
+  --bs-red: #dc3545;
+  --bs-orange: #fd7e14;
+  --bs-yellow: #ffc107;
+  --bs-green: #198754;
+  --bs-teal: #20c997;
+  --bs-cyan: #0dcaf0;
+  --bs-white: #fff;
+  --bs-gray: #6c757d;
+  --bs-gray-light: #f5f5f5;
+  --bs-gray-hover: #e5e5e5;
+  --bs-primary: #{$primary_color};
+  --bs-secondary: #6c757d;
+  --bs-success: #198754;
+  --bs-info: #0dcaf0;
+  --bs-warning: #ffc107;
+  --bs-danger: #dc3545;
+  --bs-light: #f8f9fa;
+  --bs-dark: #212529;
+  --bs-hover: #{$primary_hover};
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font: {
+    size: 16px;
+    family: 'Lato', sans-serif;
+  }
+}
+
+// 居中
+@mixin flex_middle($col: false) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @if ($col) {
+    flex-direction: column;
+  }
+}

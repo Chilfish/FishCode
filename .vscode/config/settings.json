@@ -1,0 +1,212 @@
+{
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features",
+    "editor.quickSuggestions": {
+      "comments": "on",
+      "other": "on",
+      "strings": "on"
+    }
+  },
+  "[java]": {},
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.quickSuggestions": {
+      "comments": "on",
+      "other": "on",
+      "strings": "on"
+    }
+  },
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[less]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.quickSuggestions": {
+      "comments": "on",
+      "other": "on",
+      "strings": "on"
+    }
+  },
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.python",
+    "editor.formatOnType": true
+  },
+  "[scss]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[shellscript]": {
+    "editor.defaultFormatter": "shakram02.bash-beautify"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[vue]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[xml]": {
+    "editor.defaultFormatter": "DotJoshJohnson.xml"
+  },
+  "[yaml]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "bashBeautify.tabSize": 2,
+  "breadcrumbs.symbolSortOrder": "type",
+  "code-runner.executorMapByFileExtension": {
+    ".sh": "cd $dir && bash ./$filename"
+  },
+  "code-runner.languageIdToFileExtensionMap": {
+    "/bin/git-bash": ".sh",
+    "bat": ".bat",
+    "git-bash": ".sh",
+    "powershell": ".ps1",
+    "typescript": ".ts"
+  },
+  "code-runner.runInTerminal": true,
+  "code-runner.saveAllFilesBeforeRun": true,
+  "code-runner.saveFileBeforeRun": true,
+  "code-runner.showExecutionMessage": false,
+  "code-runner.showRunCommandInEditorContextMenu": false,
+  "code-runner.temporaryFileName": "TempFile_ignore",
+  "cSpell.customDictionaries": {
+    "custom-dictionary-user": {
+      "addWords": true,
+      "name": "custom-dictionary-user",
+      "path": "~/.cspell/custom-dictionary-user.txt",
+      "scope": "user"
+    }
+  },
+  "cSpell.ignoreWords": [
+    "vuepress"
+  ],
+  "debug.onTaskErrors": "debugAnyway",
+  "debug.terminal.clearBeforeReusing": true,
+  "diffEditor.ignoreTrimWhitespace": false,
+  "editor.cursorSmoothCaretAnimation": true,
+  "editor.detectIndentation": false,
+  "editor.fontFamily": "Fira Code, Consolas",
+  "editor.fontLigatures": true,
+  "editor.fontSize": 17,
+  "editor.formatOnPaste": true,
+  "editor.minimap.maxColumn": 60,
+  "editor.mouseWheelZoom": true,
+  "editor.renderWhitespace": "boundary",
+  "editor.smoothScrolling": true,
+  "editor.suggestSelection": "first",
+  "editor.tabCompletion": "onlySnippets",
+  "editor.tabSize": 2,
+  "editor.unicodeHighlight.allowedCharacters": {
+    " ": true
+  },
+  "editor.unicodeHighlight.ambiguousCharacters": false,
+  "editor.unicodeHighlight.invisibleCharacters": false,
+  "editor.wordWrap": "on",
+  "explorer.confirmDelete": false,
+  "explorer.confirmDragAndDrop": false,
+  "explorer.copyRelativePathSeparator": "/",
+  "explorer.sortOrder": "type",
+  "extensions.autoUpdate": "onlyEnabledExtensions",
+  "extensions.ignoreRecommendations": true,
+  "files.autoSave": "afterDelay",
+  "files.eol": "\n",
+  "files.exclude": {
+    "**/.classpath": true,
+    "**/.factorypath": true,
+    "**/.project": true,
+    "**/.settings": true
+  },
+  "git.autorefresh": false,
+  "git.branchSortOrder": "alphabetically",
+  "git.confirmSync": false,
+  "git.enableSmartCommit": true,
+  "html.format.wrapAttributes": "aligned-multiple",
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "liveSassCompile.settings.generateMap": false,
+  "liveServer.settings.CustomBrowser": "firefox",
+  "liveServer.settings.donotShowInfoMsg": true,
+  "liveServer.settings.donotVerifyTags": true,
+  "liveServer.settings.host": "localhost",
+  "liveServer.settings.port": 2333,
+  "liveServer.settings.useLocalIp": true,
+  "liveServer.settings.wait": 2000,
+  "markdown-preview-enhanced.codeBlockTheme": "atom-dark.css",
+  "markdown-preview-enhanced.enableExtendedTableSyntax": true,
+  "markdown-preview-enhanced.enableHTML5Embed": true, // MPE 渲染代码的运行结果功能，侧边目录栏依赖此设置
+  "markdown-preview-enhanced.enableTypographer": true,
+  "markdown-preview-enhanced.frontMatterRenderingOption": "table",
+  "markdown-preview-enhanced.HTML5EmbedIsAllowedHttp": true,
+  "markdown-preview-enhanced.HTML5EmbedUseLinkSyntax": true,
+  "markdown-preview-enhanced.previewTheme": "one-light.css",
+  "markdown-preview-enhanced.printBackground": true,
+  "markdown-preview-enhanced.singlePreview": false,
+  "markdown.experimental.updateLinksOnFileMove.enabled": "always",
+  "markdown.preview.fontFamily": "Fira Code",
+  "material-icon-theme.activeIconPack": "vue",
+  "material-icon-theme.showReloadMessage": false,
+  "material-icon-theme.showWelcomeMessage": false,
+  "prettier.singleQuote": true,
+  "redhat.telemetry.enabled": true,
+  "scm.countBadge": "focused",
+  "scm.defaultViewMode": "tree",
+  "search.followSymlinks": false,
+  "security.workspace.trust.untrustedFiles": "open",
+  "sortJSON.contextMenu": {
+    "sortJSONAlphaNumReverse": false,
+    "sortJSONKeyLengthReverse": false,
+    "sortJSONReverse": false,
+    "sortJSONTypeReverse": false,
+    "sortJSONValuesReverse": false
+  },
+  "terminal.integrated.cursorBlinking": true,
+  "terminal.integrated.cursorStyle": "line",
+  "terminal.integrated.enableMultiLinePasteWarning": false,
+  "terminal.integrated.enablePersistentSessions": false,
+  "terminal.integrated.fontSize": 16,
+  "terminal.integrated.rightClickBehavior": "default",
+  "terminal.integrated.showExitAlert": false,
+  "terminal.integrated.smoothScrolling": true,
+  "terminal.integrated.tabs.description": "${process}",
+  "terminal.integrated.tabs.enabled": false,
+  "terminal.integrated.tabs.showActions": "always",
+  "terminal.integrated.tabs.title": "${cwd}",
+  "terminal.integrated.useWslProfiles": false,
+  "update.mode": "manual",
+  "volar.autoCompleteRefs": true,
+  "vscode-office.openOutline": true,
+  "VSCodeCounter.exclude": [
+    "**/.gitignore",
+    "**/.vscode/**",
+    "**/node_modules/**",
+    "**/.idea/**",
+    "**/.VSCodeCounter/**",
+    "**/*.json",
+    "**/*.svg",
+    "**/*yaml",
+    "**/*_ignore.*"
+  ],
+  "VSCodeCounter.history": 8,
+  "VSCodeCounter.maxOpenFiles": 1000,
+  "VSCodeCounter.outputAsCSV": false,
+  "VSCodeCounter.outputAsText": false,
+  "VSCodeCounter.outputPreviewType": "none",
+  "window.zoomLevel": -1,
+  "workbench.colorTheme": "Eva Dark Italic",
+  "workbench.editor.enablePreview": false,
+  "workbench.editor.splitInGroupLayout": "vertical",
+  "workbench.editor.untitled.hint": "hidden",
+  "workbench.editorAssociations": {
+    "*.ico": "cweijan.officeViewer",
+    "*.md": "default"
+  },
+  "workbench.enableExperiments": false,
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.list.smoothScrolling": true
+}

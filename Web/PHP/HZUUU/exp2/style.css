@@ -1,0 +1,33 @@
+body {
+  background: #1f6fb5;
+  height: 700px;
+}
+.app {
+  background: url(hua.jpg);
+  height: 100%;
+  width: 90%;
+  margin: 0 auto;
+  font-family: 隶书;
+  font-size: 24px;
+}
+header {
+  padding: 1rem;
+  height: 15%;
+  background: #fcd692;
+  opacity: 80%;
+}
+nav {
+  padding: 1rem;
+  height: 10%;
+  background: #faffeb;
+}
+article {
+  padding: 1rem;
+  height: 65%;
+  background: rgba(157, 211, 250, 80%);
+}
+footer {
+  padding: 1rem;
+  height: 10%;
+  background: #a3a380;
+}

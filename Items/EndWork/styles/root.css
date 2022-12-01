@@ -1,0 +1,197 @@
+.app {
+  position: relative;
+}
+
+.button {
+  height: 30%;
+  margin: 0.7rem auto;
+  line-height: 2.5rem;
+}
+
+.titles {
+  letter-spacing: 0.5rem;
+}
+
+/* 操作按钮 */
+input[type="button"] {
+  background: none;
+  border: none;
+}
+
+.editInfo {
+  height: 10%;
+  margin: 0.5rem 0;
+  padding-left: 4rem;
+}
+.editInfo .editBtn,
+.editInfo .saveBtn {
+  height: 34px;
+  width: 4.5rem;
+  margin: 10px;
+  text-align: center;
+  line-height: 1.8rem;
+  font-size: 0.7rem;
+  border-radius: 6px;
+  display: inline-block;
+}
+
+/* 表格的操作按钮 */
+.right td input[type="button"] {
+  margin-right: 8px;
+  font-size: 0.7rem;
+  visibility: hidden;
+}
+.right td input:hover {
+  color: var(--purple_deep);
+  cursor: pointer;
+}
+.right tbody tr:hover input {
+  visibility: visible;
+}
+
+/* 弹窗 */
+
+.mes {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.mask {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
+  cursor: pointer;
+  position: relative;
+}
+.win {
+  position: absolute;
+  top: 3.95rem;
+  right: 11.2rem;
+  width: 70%;
+  height: 80%;
+  border-radius: 30px;
+  box-shadow: 8px 10px 6px rgba(0, 0, 0, 0.028),
+    14px 18px 15px rgba(0, 0, 0, 0.04), 22px 27px 29px rgba(0, 0, 0, 0.052),
+    44px 55px 69px rgba(0, 0, 0, 0.08);
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+}
+
+.close img {
+  position: absolute;
+  top: 20px;
+  right: 26px;
+  width: 20px;
+  cursor: pointer;
+  transition: ease-in-out 0.3s;
+}
+.close img:hover {
+  transform: rotate(180deg);
+}
+
+.win .titles {
+  margin: 1rem auto;
+}
+
+.edit .button {
+  display: inline-block;
+  width: 4rem;
+  height: 1.6rem;
+  margin: 0 1.7rem 1rem;
+  text-align: center;
+}
+.edit span {
+  font-size: 0.7rem;
+  line-height: 1rem;
+}
+
+.win .tables {
+  margin: 1rem auto 1.8rem;
+}
+.win thead {
+  position: sticky;
+  top: -19px;
+}
+
+.editable {
+  width: 5rem;
+  font-size: 0.7rem;
+  line-height: 1.5rem;
+  text-align: center;
+  border: none;
+  border-bottom: 1px solid #000;
+  background: none;
+}
+.editable:focus {
+  outline-style: none;
+}
+
+.right .editable:hover {
+  color: #000;
+  cursor: text;
+}
+
+/*搜索按钮*/
+
+.search {
+    display: inline-block;
+    height: 34px;
+  width: 14rem;
+  position: relative;
+  transition: 0.3s width;
+}
+
+.search form {
+  background: #F4F4F4;
+  display: inline-block;
+  padding: 0 38px 0 16px;
+  border: 1px solid #fff0;
+  border-radius: 2px;
+}
+
+.search input {
+  word-break: break-all;
+  overflow: hidden;
+  width: 100%;
+  height: 34px;
+  border: none;
+  background-color: #0000;
+  box-shadow: none;
+  font-size: 14px;
+  line-height: 34px;
+  transition: all 0.2s;
+}
+
+.search input:focus {
+  outline: none;
+}
+
+.search .nav-search-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 48px;
+  height: 36px;
+  border: none;
+  border-radius: 2px;
+  background: #e7e7e7;
+  line-height: 26px;
+  cursor: pointer;
+}
+
+.search .searchBtn {
+  position: absolute;
+  top: 9px;
+  right: 17px;
+  border: none;
+  background: none;
+  color: #505050;
+  font-size: 16px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.search .searchBtn:hover{
+  color: var(--blue);
+}

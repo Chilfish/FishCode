@@ -1,0 +1,71 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+a,
+a:visited {
+  outline: none;
+  text-decoration: none;
+  color: #26232a;
+}
+
+.app {
+  height: 100vh;
+  background: linear-gradient(to right, #d3cce3, #e9e4f0);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.container {
+  position: relative;
+  margin: 20px;
+  height: 100px;
+  width: 90vw;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.card {
+  height: 80px;
+  width: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to right, #a5f3e5, #c3ccf3);
+  border-radius: 20px;
+  cursor: pointer;
+  margin: 30px;
+  position: relative;
+  transition: all 0.3s ease-in-out;
+}
+
+@media screen and (max-width: 480px) {
+  .card {
+    width: 160px;
+  }
+}
+
+.card a {
+  text-align: center;
+  font-weight: bolder;
+  height: 100%;
+  width: 100%;
+  font-size: 17px;
+  line-height: 80px;
+  letter-spacing: 5px;
+}
+
+.container:hover .card {
+  opacity: 0.5;
+}
+.container .card:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+.card a:hover {
+  color: #3a2274;
+}

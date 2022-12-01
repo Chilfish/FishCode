@@ -1,0 +1,70 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/*
+* 颜色
+*/
+:root {
+  --purple: #ac9bb5;
+  --purple_deep: #36447b;
+  --blue: #648ab9;
+  --grey: #d2dbf4;
+  --blue_green: #588bb9;
+}
+
+/*
+*表格*
+*/
+table {
+  border: 2px solid #ddd;
+  font-size: 0.8rem;
+  margin: 10px;
+  border-collapse: collapse;
+}
+caption {
+  font-weight: bold;
+  padding: 10px;
+}
+td,
+th {
+  border: 1px solid #ddd;
+  padding: 1em 1.5em;
+}
+thead th {
+  background-color: #eff3f5;
+}
+tr:nth-child(even) {
+  background-color: #f7f7f7;
+}
+tr:nth-child(odd) {
+  background-color: #fff;
+}
+
+/*
+* 链接
+*/
+a {
+  font-weight: bold;
+  outline: none;
+  text-decoration: none;
+}
+a:link,
+a:visited {
+  color: var(--blue);
+}
+a:active,
+a:focus,
+a:hover {
+  text-decoration: underline;
+}
+
+/* 
+* 列表 */
+ul,
+ol,
+li {
+  list-style: none;
+}

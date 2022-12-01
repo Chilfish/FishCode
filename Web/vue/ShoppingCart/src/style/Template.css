@@ -1,0 +1,41 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/*
+* 颜色
+*/
+:root {
+  --purple: #ac9bb5;
+  --purple_deep: #36447b;
+  --blue: #648ab9;
+  --grey: #d2dbf4;
+  --blue_green: #79abd7;
+  --blue_green_deep: #4f7293;
+}
+
+/*
+* 链接
+*/
+a:active,
+a:focus,
+a {
+  font-weight: bold;
+  outline: none;
+  text-decoration: none;
+}
+a:link,
+a:visited {
+  color: var(--purple_deep);
+}
+
+a:hover {
+  color: var(--blue_green);
+  text-decoration: underline;
+}
+
+li::marker {
+  content: '';
+}

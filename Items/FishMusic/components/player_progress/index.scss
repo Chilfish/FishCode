@@ -1,0 +1,239 @@
+/*!
+* by: fish
+*/
+
+@import '../config';
+
+$backImg: linear-gradient(
+  0deg,
+  rgba(247, 247, 247, 1) 23.8%,
+  rgba(252, 221, 221, 1) 92%
+);
+
+#app {
+  height: 100vh;
+  width: 100vw;
+  background-image: $backImg;
+  position: relative;
+  @include flex_middle();
+}
+
+.back-cover {
+  width: 100%;
+  height: 100%;
+  background: url('') no-repeat;
+  background-size: 100%;
+  filter: blur(10px);
+  z-index: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  transform: scale(1.2);
+}
+
+.music-footer {
+  @include flex_middle();
+  justify-content: space-around;
+  width: 90%;
+  height: 6rem;
+  margin: 0 1rem;
+  background-color: var(--bs-white);
+  border-radius: 0.6rem;
+  z-index: 1;
+}
+
+.music-info {
+  height: 100%;
+  width: 25%;
+  padding: 0.5rem 0;
+  margin-left: 1rem;
+  display: flex;
+  // 专辑封面
+  .music-cover {
+    height: 4.5rem;
+    width: 4.5rem;
+    margin: auto 0.5rem;
+    img {
+      width: 100%;
+      border-radius: 0.3rem;
+      cursor: pointer;
+    }
+  }
+
+  .info-box {
+    display: inline-block;
+  }
+
+  h3 {
+    font-size: 0.9rem;
+    vertical-align: middle;
+    max-width: 10rem;
+    width: fit-content;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: inline-block;
+    margin: 0.3rem;
+  }
+
+  .artist {
+    margin-top: 1rem;
+    font-size: 0.7rem;
+  }
+
+  .btn {
+    margin-left: 0.2rem;
+  }
+}
+
+.btns {
+  margin: 1rem 0 0.7rem;
+  height: 2rem;
+  @include flex_middle();
+
+  .btn-big {
+    font-size: 2rem;
+  }
+}
+
+.btn#like .fa-solid,
+.btn#like:hover {
+  color: red;
+}
+.btn {
+  margin: 0 1rem;
+  padding: 0;
+  transition: all ease-in-out 0.2s;
+  &:focus {
+    box-shadow: none;
+  }
+  &:hover {
+    color: $primary_color;
+  }
+}
+
+.playing {
+  width: 45%;
+  height: 100%;
+  margin: 0 2rem;
+
+  #play {
+    width: 3rem;
+    border-radius: 50%;
+    background-color: var(--bs-gray-light);
+
+    &:hover {
+      color: black;
+      background-color: var(--bs-gray-hover);
+    }
+    .fa-play {
+      padding-left: 0.3rem;
+    }
+  }
+
+  .time {
+    @include flex_middle();
+    font-size: 0.7rem;
+    height: 2rem;
+    color: var(--bs-gray);
+    user-select: none;
+  }
+}
+
+// 进度条
+.progress {
+  margin: 1rem 0.5rem;
+  width: 90%;
+  height: 4px;
+  border-radius: 3px;
+  cursor: pointer;
+  .progressing {
+    height: 100%;
+    background-color: $primary_color;
+    width: 0;
+    transition: width 0.1s linear;
+    cursor: pointer;
+  }
+}
+
+.other-btn {
+  width: 20%;
+  height: 100%;
+  margin: 0 1rem;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+  &:hover {
+    color: $primary_hover;
+  }
+}
+
+// 音量调节
+.volume {
+  margin-bottom: 8.5rem;
+  .volume-box {
+    display: block;
+    width: 2rem;
+    height: 7.5rem;
+    margin: 0.5rem auto;
+    padding: 0.5rem 0;
+    border-radius: 4px;
+    background-color: white;
+    box-shadow: 0px 14.1px 2.9px -15px rgba(0, 0, 0, 0.223),
+      0px 25px 8px -15px rgba(0, 0, 0, 0.328),
+      0px 38px 19.3px -15px rgba(0, 0, 0, 0.424),
+      0px 82px 64px -15px rgba(0, 0, 0, 0.59);
+    position: relative;
+
+    visibility: hidden;
+    transition: all 0.3s ease-in-out;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -0.4rem;
+      left: 0.5rem;
+      width: 0rem;
+      height: 0rem;
+      border-top: 7px solid white;
+      border-left: 7px solid transparent;
+      border-right: 7px solid transparent;
+    }
+  }
+
+  .volume-range {
+    --height: 20px;
+
+    margin: auto;
+    display: block;
+    height: 6.5rem;
+    width: 0.4rem;
+    border-radius: 2px;
+    background-color: var(--bs-gray-light);
+    position: relative;
+
+    .volume-circle {
+      color: $primary_color;
+      font-size: 0.9rem;
+      position: absolute;
+      bottom: 0;
+      left: -4px;
+
+      &::after {
+        content: '';
+        margin: 0 auto;
+        display: block;
+        width: 0.4rem;
+        height: var(--height);
+        background: $primary_color;
+      }
+      &::before {
+        position: relative;
+        bottom: -2px;
+        left: 0.2px;
+      }
+    }
+  }
+}

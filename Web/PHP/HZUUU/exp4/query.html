@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset='UTF-8'>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />
+    <script src=''></script>
+    <link rel='stylesheet' href='../../styles/Template.css'>
+    <link rel='icon' href='../../img/bili.ico'>
+    <style>
+        .app {
+            display: flex;
+            flex-direction: column;
+            margin: 3em;
+            letter-spacing: 0.1em;
+        }
+
+        form {
+            margin: 2em 0;
+            width: 25%;
+        }
+
+        input[type="submit"] {
+            margin: 0;
+        }
+    </style>
+    <title>查询信息</title>
+</head>
+
+<body>
+    <div class="app">
+        <h1>查询员工信息</h1>
+        <form action="query.php" method="post">
+            <label for="name">
+                <span>输入要查询的员工姓名：</span>
+                <input type="text" name="name" id="name">
+            </label>
+            <input type="submit" value="查询">
+        </form>
+    </div>
+</body>
+
+</html>
