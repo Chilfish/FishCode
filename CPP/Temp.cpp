@@ -2,20 +2,11 @@
 #define QAQ std
 #define endl "\n"
 #define ll long long
-<<<<<<< HEAD
 #define vi vector<int>
 #define all(s) s.begin(), s.end()
-=======
-#define QAQ std
-#define PLL pair<ll, ll>
-#define all(s) s.begin(), s.end()
-#define rall(s) s.rbegin(), s.rend()
-#define IOS ios::sync_with_stdio(false), cin.tie(0), cout.tie(0)
->>>>>>> 72ab37fffe21e16f19efe52b68a51a3072eb45b2
 using namespace QAQ;
 #pragma GCC optimize(3)
 
-<<<<<<< HEAD
 struct node { int a, b; };
 
 void solve() {
@@ -46,8 +37,3 @@ int main() {
   while (T--) solve();
   return 0;
 }
-=======
-int main() {
-
-}
->>>>>>> 72ab37fffe21e16f19efe52b68a51a3072eb45b2

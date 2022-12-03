@@ -217,6 +217,7 @@
     "numbers": "cpp",
     "semaphore": "cpp",
     "syncstream": "cpp",
-    "variant": "cpp"
+    "variant": "cpp",
+    "math.h": "c"
   }
 }

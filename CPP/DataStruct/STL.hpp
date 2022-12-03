@@ -15,14 +15,12 @@ using PII = pair<int, int>;
 using PLL = pair<ll, ll>;
 using PSI = pair<string, int>;
 
-#include <random>
-#include <functional>
-#include <ctime>
-// generate random data
-const int MIN = -1e6, MAX = 1e6;
-default_random_engine generator(time(NULL));
-uniform_int_distribution<int> dis(MIN, MAX);
-auto Random = bind(dis, generator); // 生成随机数
+int Random(int Min = 0, int Max = 1e2) {
+  random_device seed;
+  ranlux48 engine(seed());
+  uniform_int_distribution<> dis(Min, Max);
+  return dis(engine);
+};
 
 /**
  * 将数组转为字符串
