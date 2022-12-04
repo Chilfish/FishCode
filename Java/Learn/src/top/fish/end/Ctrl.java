@@ -1,12 +1,13 @@
 package top.fish.end;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 
 import java.util.Random;
-
 
 public class Ctrl {
   @FXML
@@ -15,25 +16,35 @@ public class Ctrl {
   private GridPane UserPane, BotPane;
   @FXML
   private ImageView PostBotCard, PostUserCard;
-
-  private Player user;
-  private Player bot;
-
+  @FXML
+  private Button Mode;
+  @FXML
+  private Label p1Name, p1Score;
+  @FXML
+  private Label p2Name, p2Score;
+  /**
+   * 玩家们
+   */
+  private Player user, bot;
   /**
    * 公共的卡牌池
    */
   private CardPool Cards;
+  /**
+   * 是比大还是比小
+   */
+  private boolean bigger;
 
   /**
    * 生成卡牌图片到玩家牌池中
    */
   private void generateCard(Player User) {
     var cards = Cards.getCards();
-    User.set(cards);
+    User.setCards(cards);
 
     for (int i = 0; i < CardPool.len; i++) {
-      var c = cards.get(i);
-      Card card = new Card(c.getKey(), c.getValue(), i);
+      Card c = cards.get(i);
+      Card card = new Card(c.name, c.num, i);
       User.playerPane.add(card.btn, i, 0);
 
       // 给玩家添加按钮事件
@@ -43,42 +54,73 @@ public class Ctrl {
     }
   }
 
+  /**
+   * 轮到 Bot 出牌了
+   *
+   * @return Bot 出的牌
+   */
   private Card botRound() {
-    int pos = new Random().nextInt(bot.count - 1);
+    int pos = new Random().nextInt(bot.count);
     return bot.getCard(pos);
   }
 
+  /**
+   * 把牌放到出牌区
+   *
+   * @param player 玩家
+   * @param card   玩家出的牌
+   */
   private void displayCard(Player player, Card card) {
+    int pos = card.position;
     player.postImg.setImage(new Image(card.path));
+    player.playerPane.add(new Card().btn, pos, 0);
 
-//    int pos = card.position;
-//    card.path = CardPool.backImg;
-//    card.btn = new Button("", card.setImg());
-//    card.btn.setDisable(true);
-
-//    player.count--;
-//    player.cards.remove(pos);
+    player.count--;
+    player.cards.remove(card);
   }
 
   /**
-   * 获取玩家点击的牌
+   * 玩家出牌后的动作
    */
   public void CardAction(Card userCard) {
     Card botCard = botRound();
-    displayCard(user, userCard);
     displayCard(bot, botCard);
+    displayCard(user, userCard);
 
-    System.out.println("\nbot: " + botCard +
-        "player: " + userCard +
-        "result: " + userCard.Comparator(botCard));
+    boolean res = userCard.Comparator(botCard);
+    if (!bigger) res = !res;
+
+    if (res) {
+      user.score += Player.PER_SCORE;
+    } else {
+      bot.score += Player.PER_SCORE;
+    }
+
+    p1Score.setText(String.valueOf(user.score));
+    p2Score.setText(String.valueOf(bot.score));
+  }
+
+  /**
+   * 切换模式
+   */
+  public void ToggleMode() {
+    bigger = !bigger;
+    if (bigger) {
+      Mode.setText("比谁大");
+    } else {
+      Mode.setText("比谁小");
+    }
   }
 
   public void INIT() {
-    System.out.println("\n----Welcome!----\n");
-
+    bigger = true;
     Cards = new CardPool();
     user = new Player(UserPane, PostUserCard, "有机鱼");
     bot = new Player(BotPane, PostBotCard, "Bot");
+
+    p1Name.setText(user.name); p2Name.setText(bot.name);
+    p1Score.setText("0"); p2Score.setText("0");
+
     generateCard(user); generateCard(bot);
   }
 
@@ -91,7 +133,6 @@ public class Ctrl {
         BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
         BackgroundPosition.CENTER, BackgroundSize.DEFAULT
     )));
-
     INIT();
   }
 }

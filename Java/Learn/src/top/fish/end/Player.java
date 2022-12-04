@@ -2,19 +2,20 @@ package top.fish.end;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
-import javafx.util.Pair;
 
 import java.util.LinkedList;
 
 /**
- * 玩家类
+ * 玩家的信息类
  */
 public class Player {
   /**
    * 玩家的位置
    */
   GridPane playerPane;
-
+  /**
+   * 玩家的出牌区
+   */
   final ImageView postImg;
   /**
    * 玩家的名称
@@ -25,9 +26,13 @@ public class Player {
    */
   int count, score;
   /**
+   * 玩家每次获胜加的分数
+   */
+  static final int PER_SCORE = 10;
+  /**
    * 玩家手中的牌
    */
-  LinkedList<Pair<String, Integer>> cards;
+  LinkedList<Card> cards;
 
   public Player(GridPane player, ImageView postImg, String name) {
     this.playerPane = player;
@@ -38,17 +43,15 @@ public class Player {
     this.score = 0;
   }
 
-  public void set(LinkedList<Pair<String, Integer>> cards) {
+  /**
+   * 设置玩家的手牌
+   */
+  public void setCards(LinkedList<Card> cards) {
     this.cards = cards;
   }
 
   /**
    * 返回玩家手中指定位置卡牌的数据
    */
-  public Card getCard(int position) {
-    var cardData = cards.get(position);
-    String name = cardData.getKey();
-    int num = cardData.getValue();
-    return new Card(name, num, position);
-  }
+  public Card getCard(int position) { return cards.get(position); }
 }

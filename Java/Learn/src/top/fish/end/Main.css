@@ -1,5 +1,5 @@
 #App {
-  /*-fx-background-color: #efc1c1;*/
+  -fx-background-color: linear-gradient(to right, #ACB6E5, #74ebd5);
 }
 
 Button {
@@ -8,8 +8,4 @@ Button {
 
 Button:hover {
   -fx-border-color: grey;
-}
-
-GridPane {
-  -fx-background-color: #731c1c;
 }
