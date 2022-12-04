@@ -6,3 +6,7 @@
 **2022-12-02 02:17 (UTC+8) 更新：**
 
 - 手残导致突然重复 commit 了几次，导致翻倍似的 total 2010 commits…… 最后无果，只好删库重新刷瓷砖了……
+
+<div align="center"><img width="90%" src="Web/static/img/commits.png"/><p>
+  我的commit们……难追回来了
+</p></div><br>

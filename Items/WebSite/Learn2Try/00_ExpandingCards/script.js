@@ -1,14 +1,14 @@
-const cards = document.querySelectorAll(".card");
+const cards = document.querySelectorAll('.card');
 
 cards.forEach((card) => {
-  card.addEventListener("click", () => {
+  card.addEventListener('click', () => {
     removeActiveClasses();
-    card.classList.add("select");
+    card.classList.add('select');
   });
 });
 
 function removeActiveClasses() {
   cards.forEach((card) => {
-    card.classList.remove("select");
+    card.classList.remove('select');
   });
 }

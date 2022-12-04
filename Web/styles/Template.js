@@ -9,17 +9,17 @@
 
 class Ajax {
   main = ({
-    url = "",
+    url = '',
     data = {},
-    method = "get", // 默认为'get'请求
-    header = "",
+    method = 'get', // 默认为'get'请求
+    header = '',
     async = true, // 默认为异步请求
     timeout = 60 * 1000, //默认60s
     success = function () {},
     fail = function () {},
   } = {}) => {
-    const requestURL = method === "get" ? this.addUrl(url, data) : url,
-      sendData = method === "get" ? null : "data=" + data, // xhr.send(string)
+    const requestURL = method === 'get' ? this.addUrl(url, data) : url,
+      sendData = method === 'get' ? null : 'data=' + data, // xhr.send(string)
       xhr = new getXHR();
 
     if (header && Object.keys(header).length) {
@@ -45,23 +45,23 @@ class Ajax {
     xhr.open(method, requestURL, async);
     xhr.timeout = timeout;
     xhr.ontimeout = () => {
-      console.log("timeout");
+      console.log('timeout');
     };
-    if (method !== "get") {
-      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    if (method !== 'get') {
+      xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     }
     xhr.send(sendData);
   };
 
   addUrl(url, obj) {
-    let result = "";
+    let result = '';
     for (let item in obj)
       if (obj[item] && String(obj[item])) {
         result += `&${item}=${obj[item]}`;
       }
 
     if (result) {
-      result = "?" + result.slice(1);
+      result = '?' + result.slice(1);
     }
     return url + result;
   }
@@ -74,12 +74,12 @@ class getXHR {
       xhr = new XMLHttpRequest();
     } else if (window.ActiveXObject) {
       try {
-        xhr = new ActiveXObject("Msxml2.XMLHTTP");
+        xhr = new ActiveXObject('Msxml2.XMLHTTP');
       } catch (e) {
         try {
-          xhr = new ActiveXObject("Microsoft.XMLHTTP");
+          xhr = new ActiveXObject('Microsoft.XMLHTTP');
         } catch (e) {
-          alert("您的浏览器暂不支持Ajax!");
+          alert('您的浏览器暂不支持Ajax!');
         }
       }
     }
@@ -91,13 +91,13 @@ class getXHR {
  * 复制 */
 
 function Copy(copyString, node) {
-  let textArea = document.createElement("textarea");
+  let textArea = document.createElement('textarea');
   textArea.value = copyString;
   node.appendChild(textArea);
   textArea.focus();
   textArea.select();
-  document.execCommand("copy");
-  textArea.style.visibility = "hidden";
+  document.execCommand('copy');
+  textArea.style.visibility = 'hidden';
   node.removeChild(textArea);
 }
 
@@ -105,11 +105,11 @@ function Copy(copyString, node) {
  * 分页 */
 
 function divPage(tablePos) {
-  const table = document.querySelector(tablePos + "tbody"),
-    perPages = document.querySelector(tablePos + "#perPage"), // Rows per Page
-    prePage = document.querySelector(tablePos + ".prePage"), // 上一页
-    nextPage = document.querySelector(tablePos + ".nextPage"), // 下一页
-    pageNum = document.querySelector(tablePos + "#pageNum"), //页码
+  const table = document.querySelector(tablePos + 'tbody'),
+    perPages = document.querySelector(tablePos + '#perPage'), // Rows per Page
+    prePage = document.querySelector(tablePos + '.prePage'), // 上一页
+    nextPage = document.querySelector(tablePos + '.nextPage'), // 下一页
+    pageNum = document.querySelector(tablePos + '#pageNum'), //页码
     tpPage = document.querySelector(tablePos + 'input[name="tpPage"]'); // 跳页
 
   let totalRow = table.rows.length,
@@ -121,10 +121,10 @@ function divPage(tablePos) {
 
   const display = () => {
       for (let row of table.rows) {
-        row.style.display = "none";
+        row.style.display = 'none';
       }
       for (let i = begin; i < end; ++i) {
-        table.rows[i].style.display = "";
+        table.rows[i].style.display = '';
       }
       pageNum.innerText = curPage;
       check();
@@ -136,18 +136,18 @@ function divPage(tablePos) {
     },
     //总页数
     printPage = () => {
-      document.getElementById("total").innerText = totalPage;
+      document.getElementById('total').innerText = totalPage;
     };
 
   // 前后页
-  prePage.addEventListener("click", () => {
+  prePage.addEventListener('click', () => {
     --curPage;
     check();
     end = begin;
     begin = prePage.disabled ? 0 : begin - perPage;
     display();
   });
-  nextPage.addEventListener("click", () => {
+  nextPage.addEventListener('click', () => {
     ++curPage;
     check();
     begin = end;
@@ -156,9 +156,9 @@ function divPage(tablePos) {
   });
 
   //一页要展示的行数
-  perPages.addEventListener("change", (e) => {
+  perPages.addEventListener('change', (e) => {
     const val = e.target.value;
-    if (val === "all") {
+    if (val === 'all') {
       end = perPage = totalRow;
     } else if (val > totalRow) {
       end = perPage = totalRow;
@@ -173,8 +173,8 @@ function divPage(tablePos) {
   });
 
   //跳页
-  tpPage.addEventListener("keydown", (e) => {
-    if (e.key === "Enter") {
+  tpPage.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
       let val = Number(e.target.value);
       if (val >= 1 && val <= totalPage) {
         curPage = val;
@@ -203,9 +203,9 @@ function divPage(tablePos) {
  * 点击排序 */
 
 function sortTable(tablePos, paging = true) {
-  const thead = document.querySelector(tablePos + "thead"),
-    tbody = document.querySelector(tablePos + "tbody"),
-    sortIco = document.querySelectorAll(tablePos + ".sort_ico");
+  const thead = document.querySelector(tablePos + 'thead'),
+    tbody = document.querySelector(tablePos + 'tbody'),
+    sortIco = document.querySelectorAll(tablePos + '.sort_ico');
 
   let rows_array = Array.from(tbody.rows),
     sortDire = [],
@@ -232,8 +232,8 @@ function sortTable(tablePos, paging = true) {
     };
   }
 
-  thead.addEventListener("click", (e) => {
-    if (e.target.tagName === "TH") {
+  thead.addEventListener('click', (e) => {
+    if (e.target.tagName === 'TH') {
       let index = e.target.cellIndex;
       if (sortDire[index]) {
         rows_array.sort(cmp(index));
@@ -247,16 +247,16 @@ function sortTable(tablePos, paging = true) {
         if (sortDire[index]) {
           let item = sortIco[index];
           item.style =
-            "background:url(img/sort_up.png) center no-repeat;background-size:100%;top:14px;display:block;";
+            'background:url(img/sort_up.png) center no-repeat;background-size:100%;top:14px;display:block;';
         } else {
           let item = sortIco[index];
           item.style =
-            "background:url(img/sort_down.png) center no-repeat;background-size:100%;top:22px;display:block;";
+            'background:url(img/sort_down.png) center no-repeat;background-size:100%;top:22px;display:block;';
         }
         if (preIndex !== index) {
           let item = sortIco[preIndex];
           item.style =
-            "background:url(img/sort.png) center no-repeat;background-size:100%;top:18.5;display:none;";
+            'background:url(img/sort.png) center no-repeat;background-size:100%;top:18.5;display:none;';
         }
       }
 
@@ -275,10 +275,10 @@ function sortTable(tablePos, paging = true) {
 
 function changeBtn(btn, fun) {
   btn.forEach((item) => {
-    item.addEventListener("click", (e) => {
-      btn.forEach((i) => i.parentElement.classList.remove("active"));
+    item.addEventListener('click', (e) => {
+      btn.forEach((i) => i.parentElement.classList.remove('active'));
       let active = e.target.parentElement.classList;
-      active.add("active");
+      active.add('active');
       fun(e.target);
     });
   });
