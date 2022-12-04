@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="App" prefHeight="800.0" prefWidth="1200.0" stylesheets="@Main.css"
             xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="top.fish.end.Ctrl">
-    <GridPane fx:id="BotPane" layoutX="58.0" layoutY="92.0" prefHeight="138.0" prefWidth="1085.0">
+    <GridPane fx:id="BotPane" layoutX="66.0" layoutY="112.0" prefHeight="140.0" prefWidth="1090.0"
+              AnchorPane.leftAnchor="57.0" AnchorPane.rightAnchor="57.0"
+              AnchorPane.topAnchor="100.0">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
@@ -28,8 +33,35 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
         </rowConstraints>
     </GridPane>
-    <GridPane fx:id="UserPane" layoutX="53.0" layoutY="593.0" prefHeight="138.0"
-              prefWidth="1085.0">
+
+    <AnchorPane layoutX="55.0" layoutY="286.0" prefHeight="230.0" prefWidth="1090.0">
+        <ImageView fx:id="PostBotCard" fitHeight="243.0" fitWidth="159.0" layoutX="152.0"
+                   layoutY="2.0" pickOnBounds="true" preserveRatio="true"
+                   AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="150.0"
+                   AnchorPane.topAnchor="0.0"/>
+        <Button alignment="CENTER" layoutX="476.0" layoutY="36.0" mnemonicParsing="false"
+                prefHeight="61.0" prefWidth="134.0" text="比谁大" AnchorPane.leftAnchor="478.0"
+                AnchorPane.rightAnchor="478.0" AnchorPane.topAnchor="36.0">
+            <font>
+                <Font name="System Bold" size="23.0"/>
+            </font>
+        </Button>
+        <Button onAction="#INIT" alignment="CENTER" layoutX="473.0" layoutY="142.0"
+                mnemonicParsing="false"
+                prefHeight="61.0" prefWidth="134.0" text="重 玩" AnchorPane.bottomAnchor="36.0"
+                AnchorPane.leftAnchor="478.0" AnchorPane.rightAnchor="478.0">
+            <font>
+                <Font name="System Bold" size="23.0"/>
+            </font>
+        </Button>
+        <ImageView fx:id="PostUserCard" fitHeight="243.0" fitWidth="159.0" layoutX="788.0"
+                   pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0"
+                   AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="0.0"/>
+    </AnchorPane>
+
+    <GridPane fx:id="UserPane" layoutX="64.0" layoutY="547.0" prefHeight="140.0" prefWidth="1090.0"
+              AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="57.0"
+              AnchorPane.rightAnchor="57.0">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>

@@ -1,17 +1,22 @@
 package top.fish.end;
 
+import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.util.Pair;
 
 import java.util.*;
 
 /**
- * 随机发牌的类，得到的是派发排的路径
+ * 每局游戏的卡牌池，每开一场游戏就重新洗牌
  */
 public class CardPool {
   /**
    * 卡牌的类型
    */
   static final String[] cardType = new String[]{"fang", "mei", "hong", "hei"};
+  static final int len = 13;
+  static final String backImg = "img/back.png";
   /**
    * 卡牌类型的权重值，1 ~ 4
    */
@@ -21,7 +26,7 @@ public class CardPool {
    */
   private final HashMap<String, List<Integer>> usedCard = new HashMap<>();
 
-  public void init() {
+  public CardPool() {
     for (int i = 0; i < 4; ++i) {
       TypeWeight.put(cardType[i], i + 1);
       usedCard.put(cardType[i], new ArrayList<>());
@@ -29,11 +34,12 @@ public class CardPool {
   }
 
   /**
+   * 将牌发到玩家手中
+   *
    * @return 派发卡牌的路径
    */
   public LinkedList<Pair<String, Integer>> getCards() {
     Random rand = new Random();
-    final int len = 13;
     var cards = new LinkedList<Pair<String, Integer>>();
 
     for (int i = 0; i < len; i++) {
@@ -51,19 +57,44 @@ public class CardPool {
     }
     return cards;
   }
-
-//  public display()
 }
 
+/**
+ * 指定每张牌的属性
+ */
 class Card {
-  private int num, weight, position;
-  private boolean bigger;
+  /**
+   * 某张牌的值、权重、在玩家手中的位置、牌的类型、路径名
+   */
+  int num, weight, position;
+  String name, path;
+  /**
+   * 是比大还是比小
+   */
+  boolean bigger;
 
-  public Card(int weight, int num, int position) {
+  Button btn;
+  ImageView imgView;
+
+  public Card(String name, int num, int position) {
     this.num = num;
-    this.weight = weight;
     this.position = position;
+    this.name = name;
+    this.weight = CardPool.TypeWeight.get(name);
+    this.path = "img/" + name + num + ".jpg";
     this.bigger = true;
+
+    this.btn = new Button("", setImg());
+  }
+
+  /**
+   * 将图片填充到新建的 ImageView 里
+   */
+  private ImageView setImg() {
+    this.imgView = new ImageView();
+    imgView.setFitHeight(127); imgView.setFitWidth(79);
+    imgView.setImage(new Image(path));
+    return this.imgView;
   }
 
   public boolean Comparator(Card card) {
@@ -72,11 +103,7 @@ class Card {
     return this.num > card.num;
   }
 
-  public void Playing() {
-//    boolean ans = COmparator
-  }
-
   public String toString() {
-    return weight + " " + num + " " + position + "\n";
+    return "weight: " + weight + " num: " + num + " pos: " + position + "\n";
   }
 }

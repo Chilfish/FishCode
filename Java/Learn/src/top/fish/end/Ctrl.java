@@ -1,42 +1,28 @@
 package top.fish.end;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import javafx.util.Pair;
 
-import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.Random;
+
 
 public class Ctrl {
   @FXML
   private AnchorPane App;
   @FXML
-  private GridPane UserPane;
+  private GridPane UserPane, BotPane;
   @FXML
-  private GridPane BotPane;
+  private ImageView PostBotCard, PostUserCard;
 
-  private Player user, bot;
+  private Player user;
+  private Player bot;
 
   /**
    * 公共的卡牌池
    */
   private CardPool Cards;
-  private HashMap<String, Integer> TypeWeight;
-
-  private ImageView setImg(Pair<String, Integer> path) {
-    ImageView imageView = new ImageView();
-    imageView.setFitHeight(127); imageView.setFitWidth(79);
-    imageView.setPreserveRatio(true); imageView.setPickOnBounds(true);
-
-    String img = "img/" + path.getKey() + path.getValue() + ".jpg";
-    imageView.setImage(new Image(img));
-    return imageView;
-  }
-
 
   /**
    * 生成卡牌图片到玩家牌池中
@@ -45,25 +31,33 @@ public class Ctrl {
     var cards = Cards.getCards();
     User.set(cards);
 
-    for (int i = 0; i < 13; i++) {
+    for (int i = 0; i < CardPool.len; i++) {
+      var c = cards.get(i);
+      Card card = new Card(c.getKey(), c.getValue(), i);
+      User.playerPane.add(card.btn, i, 0);
+
       // 给玩家添加按钮事件
-      if (User.player.equals(UserPane)) {
-        Button btn = new Button("", setImg(cards.get(i)));
-        User.player.add(btn, i, 0);
-        int I = i; btn.setOnAction(e -> CardAction(User.getCard(I)));
-      } else {
-        User.player.add(setImg(cards.get(i)), i, 0);
+      if (User.playerPane.equals(UserPane)) {
+        card.btn.setOnAction(e -> CardAction(card));
       }
     }
   }
 
   private Card botRound() {
-    Random random = new Random();
-    int bound = bot.len - 1;
-    int pos = random.nextInt(bound);
-//    bot.cards.remove(pos); bot.len--;
-
+    int pos = new Random().nextInt(bot.count - 1);
     return bot.getCard(pos);
+  }
+
+  private void displayCard(Player player, Card card) {
+    player.postImg.setImage(new Image(card.path));
+
+//    int pos = card.position;
+//    card.path = CardPool.backImg;
+//    card.btn = new Button("", card.setImg());
+//    card.btn.setDisable(true);
+
+//    player.count--;
+//    player.cards.remove(pos);
   }
 
   /**
@@ -71,11 +65,26 @@ public class Ctrl {
    */
   public void CardAction(Card userCard) {
     Card botCard = botRound();
-    System.out.println("\nbot: " + botCard.toString() +
-        "player: " + userCard.toString() +
+    displayCard(user, userCard);
+    displayCard(bot, botCard);
+
+    System.out.println("\nbot: " + botCard +
+        "player: " + userCard +
         "result: " + userCard.Comparator(botCard));
   }
 
+  public void INIT() {
+    System.out.println("\n----Welcome!----\n");
+
+    Cards = new CardPool();
+    user = new Player(UserPane, PostUserCard, "有机鱼");
+    bot = new Player(BotPane, PostBotCard, "Bot");
+    generateCard(user); generateCard(bot);
+  }
+
+  /**
+   * 游戏开始前的初始化
+   */
   public void initialize() {
     App.setBackground(new Background(new BackgroundImage(
         new Image("img/bj.jpg"),
@@ -83,12 +92,6 @@ public class Ctrl {
         BackgroundPosition.CENTER, BackgroundSize.DEFAULT
     )));
 
-    Cards = new CardPool();
-    Cards.init();
-
-    user = new Player(UserPane, "有机鱼");
-    bot = new Player(BotPane, "Bot");
-
-    generateCard(user); generateCard(bot);
+    INIT();
   }
 }

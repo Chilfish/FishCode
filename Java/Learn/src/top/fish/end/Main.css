@@ -1,7 +1,15 @@
+#App {
+  /*-fx-background-color: #efc1c1;*/
+}
+
 Button {
   -fx-padding: 0;
 }
 
 Button:hover {
   -fx-border-color: grey;
+}
+
+GridPane {
+  -fx-background-color: #731c1c;
 }
