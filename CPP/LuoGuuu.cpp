@@ -33,6 +33,8 @@ void solve() {
   string s;
   cin >> s;
   cout << dec2any(bin2dec(s), 2) << endl;
+
+  [&](void ***) {};
 }
 
 int main() {

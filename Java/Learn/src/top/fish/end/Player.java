@@ -39,7 +39,7 @@ public class Player {
     this.postImg = postImg;
     this.postImg.setImage(new Image(CardPool.backImg));
     this.name = name;
-    this.count = CardPool.len;
+    this.count = CardPool.CardLen;
     this.score = 0;
   }
 

@@ -19,9 +19,7 @@ public class Ctrl {
   @FXML
   private Button Mode;
   @FXML
-  private Label p1Name, p1Score;
-  @FXML
-  private Label p2Name, p2Score;
+  private Label p1Name, p1Score, p2Name, p2Score;
   /**
    * 玩家们
    */
@@ -42,7 +40,7 @@ public class Ctrl {
     var cards = Cards.getCards();
     User.setCards(cards);
 
-    for (int i = 0; i < CardPool.len; i++) {
+    for (int i = 0; i < CardPool.CardLen; i++) {
       Card c = cards.get(i);
       Card card = new Card(c.name, c.num, i);
       User.playerPane.add(card.btn, i, 0);
@@ -128,11 +126,6 @@ public class Ctrl {
    * 游戏开始前的初始化
    */
   public void initialize() {
-    App.setBackground(new Background(new BackgroundImage(
-        new Image("img/bj.jpg"),
-        BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
-        BackgroundPosition.CENTER, BackgroundSize.DEFAULT
-    )));
     INIT();
   }
 }

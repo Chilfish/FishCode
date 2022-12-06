@@ -7,27 +7,26 @@
 using namespace QAQ;
 #pragma GCC optimize(3)
 
-struct node { int a, b; };
+void r(istream &in = cin) {
+  while (!in.eof()) {
+    int t; in >> t;
+    cout << t << " ";
+  }
+}
+
 
 void solve() {
-  int n, s, h, l, x, y, ans = 0;
-  vector<node> arr;
-  cin >> n >> s >> h >> l; h += l;
-  for (int i = 0; i < n; ++i) {
-    cin >> x >> y;
-    arr.push_back({x, y});
-  }
-  sort(all(arr), [](node &a, node &b) {
-    return a.b < b.b;
-    });
-  for (auto &i : arr) {
-    if (i.a <= h) {
-      s -= i.b;
-      if (s < 0) break;
-      else ++ans;
-    }
-  }
-  cout << ans;
+  // ifstream fin("a.in");
+  // r(fin);
+
+  // vector<bool> arr(5, true);
+  vi arr(5, 233);
+  // auto p = arr[0];
+  int &pp = arr[0];
+  pp = 0;
+  for (auto i : arr)
+    cout << i << " ";
+
 };
 
 int main() {
