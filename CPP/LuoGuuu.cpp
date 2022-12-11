@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 #define QAQ std
-#define endl "\n"
+// #define endl "\n"
 #define ll long long
 #define all(s) s.begin(), s.end()
 using namespace QAQ;
@@ -29,12 +29,38 @@ ll bin2dec(string x) {
   return ans;
 }
 
-void solve() {
-  string s;
-  cin >> s;
-  cout << dec2any(bin2dec(s), 2) << endl;
+template <typename T>
+std::vector<T> heap_sort(std::vector<T> &vec) {
+  std::vector<T> result;
 
-  [&](void ***) {};
+  // 首先，建立一个最大堆
+  std::make_heap(vec.begin(), vec.end());
+
+  // 然后，将堆顶元素（即最大的元素）放到堆的末尾，并重新调整堆的结构
+  while (vec.size() > 0) {
+    std::pop_heap(vec.begin(), vec.end());
+    result.push_back(vec.back());
+    vec.pop_back();
+  }
+
+  // 最后，返回排序的结果
+  return result;
+}
+
+
+void solve() {
+  priority_queue<int> q;
+  vi arr{23, 4, 1, 12, 2113, 4, 3, 1};
+
+  for (int i : arr) {
+    q.push(i);
+  }
+
+  while (!q.empty()) {
+    cout << q.top() << " ";
+    q.pop();
+  }
+
 }
 
 int main() {

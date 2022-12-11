@@ -86,8 +86,8 @@ void Binary_Search_Tree() {
 int main() {
   // 1 2 -1 3 -1 -1 4 5 -1 -1 -1
   // 1 2 -1 3 4 -1 -1 -1 5 -1 6 7 -1 -1 8 -1 -1
-  tree();
-  // Complete_Binary_Tree();
+  // tree();
+  Complete_Binary_Tree();
   // Binary_Search_Tree();
   return 0;
 }

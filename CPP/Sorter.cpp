@@ -180,6 +180,38 @@ void Radix(vi &arr) {
   }
 }
 
+
+/**
+* @brief 堆排序
+*/
+void adjust_heap(vi &arr, size_t len, size_t pos) {
+  size_t l = pos * 2 + 1,
+    r = pos * 2 + 2;
+  size_t maxPos = pos;
+
+  if (l < len && arr[l] > arr[maxPos])
+    maxPos = l;
+  if (r < len && arr[r] > arr[maxPos])
+    maxPos = r;
+
+  if (maxPos != pos) {
+    swap(arr[pos], arr[maxPos]);
+    adjust_heap(arr, len, maxPos);
+  }
+}
+
+void heap_sort(vi &arr) {
+  size_t len = arr.size();
+  for (int i = len / 2 - 1; i >= 0; --i) {
+    adjust_heap(arr, len, i);
+  }
+
+  for (int i = len - 1; i >= 0; --i) {
+    swap(arr[i], arr[0]);
+    adjust_heap(arr, i, 0);
+  }
+}
+
 int main() {
 
   /**/
