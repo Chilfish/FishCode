@@ -298,3 +298,26 @@ log(`Ua: ${Ua}, Ub: ${Ub}`);
 
 log(ans);
  */
+
+const str =
+  '已已已已已已1已已已已已4已已已已已已已已4已已己已已已已已已已已已as已已已';
+
+const uni = (str) => {
+  const t = new Map();
+
+  str.split('').forEach((ele, pos) => {
+    if (t.get(ele) === undefined) {
+      t.set(ele, {
+        cnt: 1,
+        pos,
+        // pos: [pos],
+      });
+    } else {
+      t.get(ele).cnt++;
+      // t.get(ele).pos.push(pos);
+    }
+  });
+  return t;
+};
+
+console.log(uni(str));

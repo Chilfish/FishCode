@@ -2,19 +2,22 @@
 
 #include <vector>
 #include <algorithm>
+#include <functional>
 using std::vector, std::swap;
+using std::less, std::greater;
 
 // 有关堆的算法
 namespace Heap {
-template<class T>
-void adjust(vector<T> &arr, size_t len, size_t pos) {
+template<class T, class Compare = greater<int>>
+void adjust(vector<T> &arr, size_t len, size_t pos,
+  Compare cmp = Compare()) {
   size_t l = pos * 2 + 1,
     r = pos * 2 + 2;
   size_t maxPos = pos;
 
-  if (l < len && arr[l] > arr[maxPos])
+  if (l < len && cmp(arr[l], arr[maxPos]))
     maxPos = l;
-  if (r < len && arr[r] > arr[maxPos])
+  if (r < len && cmp(arr[r], arr[maxPos]))
     maxPos = r;
 
   if (maxPos != pos) {
@@ -35,11 +38,13 @@ void build(vector<T> &arr) {
 template<class T>
 void push(vector<T> &arr, const T &x) {
   arr.push_back(x);
-  size_t cur = arr.size() - 1,
+  size_t len = arr.size(),
+    cur = len - 1,
     par = (cur - 1) / 2;
 
-  while (arr[cur] > arr[par]) {
+  while (arr[cur] < arr[par]) {
     swap(arr[cur], arr[par]);
+    if (par == 0) break; // 上滤到根节点
     cur = par;
     par = (cur - 1) / 2;
   }
