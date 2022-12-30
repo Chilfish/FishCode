@@ -1,0 +1,21 @@
+{
+  "name": "socket-server",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "a Socket.io server",
+  "main": "index.js",
+  "scripts": {
+    "dev:css": "npx tailwindcss -i ./src/client/input.css -o ./dist/output.css --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "socket.io": "^4.5.4"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20",
+    "tailwindcss": "^3.2.4"
+  }
+}

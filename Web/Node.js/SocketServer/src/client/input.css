@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.chat-list a {
+  @apply hover:bg-main-2 h-16 rounded-lg mb-2 py-1 px-2;
+}
+
+a.active {
+  @apply bg-main-1 hover:bg-main-1;
+}
+
+section {
+  @apply w-fit max-w-md mb-4 py-2 px-4 rounded-lg;
+}
+section.left {
+  @apply bg-mes-left rounded-bl-none;
+}
+section.right {
+  @apply bg-mes-right rounded-br-none self-end;
+}
+
+section p {
+  @apply mb-1;
+}
+
+.time {
+  @apply text-xs text-gray-300 w-fit;
+}
+
+input:focus {
+  outline: none;
+}
+
+main.phone-chat {
+  @apply absolute top-0 right-0 flex;
+}
+
+* {
+  scrollbar-color: #5c6468 transparent;
+  scrollbar-width: thin;
+}
+*::-webkit-scrollbar {
+  width: 5px;
+}
+*::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 5px;
+}
