@@ -9,6 +9,7 @@
 
   <script async src="styles/jquery-3.6.0.min.js"></script>
   <script async src="styles/axios.min.js"></script>
+  <script async src="https://cdn.socket.io/4.4.1/socket.io.min.js"></script>
 
   <script defer src="styles/index.js"></script>
   <script defer src="./Browser.js"></script>
@@ -222,7 +223,24 @@
     </ul>
   </div>
 
+  <script>
+    const socket = new WebSocket("ws://localhost:8887");
 
+    socket.addEventListener("open", () => {
+      // 向服务器发送消息
+      socket.send(JSON.stringify({
+        type: "hello from server",
+        content: [3, "4"]
+      }));
+    });
+
+    socket.emit("hello from server", 5, "6", { 7: Uint8Array.from([8]) });
+
+    // 从服务器接收消息
+    socket.on("hello from server", (...args) => {
+      console.log(args)
+    });
+  </script>
   <div>
     <form id="FishSearch">
       <input type="search" id="">
