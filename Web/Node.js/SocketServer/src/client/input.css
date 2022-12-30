@@ -10,9 +10,6 @@ a.active {
   @apply bg-main-1 hover:bg-main-1;
 }
 
-section {
-  @apply w-fit max-w-md mb-4 py-2 px-4 rounded-lg;
-}
 section.left {
   @apply bg-mes-left rounded-bl-none;
 }
@@ -20,12 +17,12 @@ section.right {
   @apply bg-mes-right rounded-br-none self-end;
 }
 
-section p {
-  @apply mb-1;
+.time {
+  @apply text-xs text-gray-300 w-fit select-none;
 }
 
-.time {
-  @apply text-xs text-gray-300 w-fit;
+.first-time {
+  @apply w-fit text-center text-xs mx-auto mb-4 p-[6px] bg-gray-600 bg-opacity-75 rounded-xl select-none;
 }
 
 input:focus {

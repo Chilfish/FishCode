@@ -1,0 +1,17 @@
+[
+  {
+    "date": "2022/12/30 12:00:00",
+    "mes": "Hello, I'm ChillFish!",
+    "isOwn": true
+  },
+  {
+    "date": "2022/12/30 12:00:02",
+    "mes": "nice to meet you!",
+    "isOwn": true
+  },
+  {
+    "date": "2022/12/30 12:00:05",
+    "mes": "hi~",
+    "isOwn": false
+  }
+]

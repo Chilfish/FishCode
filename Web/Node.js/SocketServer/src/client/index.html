@@ -7,16 +7,16 @@
         content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />
   <link rel="stylesheet" href="/dist/output.css" />
   <link rel="icon" href="/public/img/logo.png" />
-  <script async src="index.js"></script>
+  <script defer src="loadData.js"></script>
+  <script defer src="index.js"></script>
   <title>Socket.io Chat</title>
 </head>
 
 <body class="w-screen h-screen flex bg-slate-900 text-white">
   <div class="w-[90%] sm:w-5/6 h-5/6 m-auto flex rounded-xl bg-main-4 relative">
 
-    <aside class="w-full sm:w-80 bg-main-4 rounded-xl sm:border-r-2 sm:rounded-l-xl sm:border-r-main-5">
-
-      <div class="h-1/10 flex justify-between p-4 mt-2 text-main-0">
+    <aside class="w-full sm:w-[21rem] bg-main-4 rounded-xl sm:border-r-2 sm:rounded-l-xl sm:border-r-main-5">
+      <div class="h-1/10 flex justify-between px-4 py-6 text-main-0">
         <span class="more py-1">
           <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
             <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
@@ -27,45 +27,19 @@
           <input class="w-full h-8 p-4 rounded-lg bg-main-2 text-sm" type="search" id="search" placeholder="Search" />
         </span>
       </div>
-
-      <ul class="chat-list h-9/10 p-3 bg-main-4 rounded-xl overflow-auto">
-        <li>
-          <a href="#/?user=ChillFish" class="flex w-full h-full active">
-            <img src="/public/img/logo.png" alt="user" class="w-11 rounded-[50%] mr-3 my-auto" />
-
-            <div class="user my-auto min-w-0 w-full relative">
-              <div class="username w-fit max-w-sm">ChillFish</div>
-              <div class="last-time absolute top-0 right-2 text-sm">12:00</div>
-              <div class="chatDes text-gray-300 text-xs mt-1 truncate">Hello, I'am ChillFish! wow, what a nice chat!
-              </div>
-            </div>
-          </a>
-        </li>
-
-        <li>
-          <a href="#/?user=OrganicFish" class="flex w-full h-full">
-            <img src="/public/img/user0.jpg" alt="user" class="w-11 rounded-[50%] mr-3 my-auto" />
-            <div class="user my-auto min-w-0 w-full relative">
-              <div class="username w-fit max-w-[8rem] truncate">OrganicFish</div>
-              <div class="last-time absolute top-0 right-2 text-sm">Yesterday</div>
-              <div class="chatDes text-gray-300 text-xs mt-1 truncate">got it!</div>
-            </div>
-          </a>
-        </li>
-      </ul>
+      <ul class="chat-list h-9/10 w-full p-3 bg-main-4 rounded-xl overflow-auto"></ul>
     </aside>
 
-    <main class="chat-main hidden h-full w-full sm:flex flex-col justify-between">
-      <header class="h-16 flex justify-between p-4 bg-main-4 rounded-xl">
+    <main id="chat-box" class="hidden h-full w-full sm:flex flex-col justify-between">
 
+      <header class="h-16 flex justify-between p-4 bg-main-4 rounded-xl">
         <div class="back sm:hidden">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                stroke="currentColor" class="w-6 h-6">
             <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
           </svg>
         </div>
-
-        <div class="username text-xl">ChillFish</div>
+        <div class="username text-xl"></div>
         <div class="chatInfo">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                stroke="currentColor" class="w-6 h-6">
@@ -75,23 +49,7 @@
         </div>
       </header>
 
-      <div class="h-[55rem] p-4 overflow-auto bg-chat">
-        <main class="chat-main relative flex flex-col">
-          <section class="left">
-            <p>Hello!</p>
-            <div class="time">11:59</div>
-          </section>
-
-          <section class="right">
-            <p>H</p>
-            <div class="time">12:00</div>
-          </section>
-
-          <section class="right">
-            <p>I'am ChillFish, nice chat! I'am ChillFish, nice chat!</p>
-            <div class="time">12:00</div>
-        </main>
-      </div>
+      <main id="chat-main" class="h-[55rem] p-4 overflow-auto relative flex flex-col bg-chat"></main>
 
       <footer class="send h-12 sm:h-16 flex items-center px-4">
         <button id="sendFile" class="mr-3 my-auto">
@@ -102,7 +60,7 @@
           </svg>
         </button>
 
-        <input class="w-5/6 p-4 mr-4 bg-transparent" type="text" id="mes" placeholder="Write a message...">
+        <input class="w-5/6 p-4 mr-4 bg-main-4" type="text" id="mes" placeholder="Write a message...">
 
         <button id="face" class="mr-4 my-auto">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -126,25 +84,25 @@
 
   <template id="userCard">
     <li>
-      <a href="#" class="flex w-full h-full active">
+      <a href="" data-name class="flex w-full h-full">
         <img src="" alt="user" class="w-11 rounded-[50%] mr-3 my-auto" />
-
-        <div class="user my-auto min-w-0 w-full relative">
-          <div class="username w-fit max-w-sm"></div>
+        <div class="user my-auto min-w-0 w-[16rem] relative">
+          <div class="username w-fit max-w-[8rem] truncate"></div>
           <div class="last-time absolute top-0 right-2 text-sm"></div>
-          <div class="chatDes text-gray-300 text-xs mt-1 truncate">
-          </div>
+          <div class="chatDes text-gray-300 text-xs mt-1 truncate"></div>
         </div>
       </a>
     </li>
   </template>
 
   <template id="chatMes">
-    <section class="">
-      <p></p>
-      <div class="time"></div>
+    <div class="first-time"></div>
+    <section class="w-fit max-w-md mb-4 py-2 px-4 rounded-lg">
+      <p class="mb-1"></p>
+      <div class="time" data-time></div>
     </section>
   </template>
+
 </body>
 
 </html>
