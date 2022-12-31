@@ -2,17 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
-.chat-list a {
+#chat-list a {
   @apply hover:bg-main-2 h-16 rounded-lg mb-2 py-1 px-2;
 }
 
-a.active {
+#chat-list a.active {
   @apply bg-main-1 hover:bg-main-1;
 }
 
 section.left {
   @apply bg-mes-left rounded-bl-none;
 }
+
 section.right {
   @apply bg-mes-right rounded-br-none self-end;
 }
@@ -29,6 +30,14 @@ input:focus {
   outline: none;
 }
 
+input {
+  @apply w-full h-8 p-4 rounded-lg bg-main-2 text-sm;
+}
+
+.btn {
+  @apply py-3 px-4 rounded-lg bg-main-2 hover:bg-main-1 active:bg-main-0;
+}
+
 main.phone-chat {
   @apply absolute top-0 right-0 flex;
 }
@@ -37,10 +46,12 @@ main.phone-chat {
   scrollbar-color: #5c6468 transparent;
   scrollbar-width: thin;
 }
+
 *::-webkit-scrollbar {
   width: 5px;
 }
+
 *::-webkit-scrollbar-thumb {
-  background: #ccc;
+  background: #cccccc;
   border-radius: 5px;
 }

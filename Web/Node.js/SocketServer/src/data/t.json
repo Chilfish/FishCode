@@ -1,0 +1,54 @@
+{
+  "peoples": [
+    "bot",
+    "ChillFish",
+    "OrganicFish"
+  ],
+  "detail": [
+    {
+      "name": "bot",
+      "face": "user1.jpg",
+      "friends": [
+        {
+          "name": "ChillFish",
+          "face": "logo.png",
+          "chat_record": [
+            {
+              "text": "Hello!",
+              "time": "2022/12/29 12:00:00",
+              "isOwn": true
+            },
+            {
+              "text": "Hi~",
+              "time": "2022/12/29 12:00:05",
+              "isOwn": false
+            }
+          ]
+        },
+        {
+          "name": "OrganicFish",
+          "face": "user0",
+          "chat_record": [
+            {
+              "text": "Hello, I'm OrganicFish!",
+              "time": "2022/12/30 23:23:23",
+              "isOwn": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "ChillFish",
+      "face": "logo.jpg",
+      "friends": [
+        {
+          "name": "bot"
+        }
+      ]
+    },
+    {
+      "name": "OrganicFish"
+    }
+  ]
+}

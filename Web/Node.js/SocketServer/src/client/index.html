@@ -7,8 +7,10 @@
         content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />
   <link rel="stylesheet" href="/dist/output.css" />
   <link rel="icon" href="/public/img/logo.png" />
-  <script defer src="loadData.js"></script>
-  <script defer src="index.js"></script>
+  <script defer src="/public/lib/socket.io.min.js"></script>
+  <script defer src="script/loadData.js"></script>
+  <script defer src="script/chatHandler.js"></script>
+  <script defer src="script/index.js"></script>
   <title>Socket.io Chat</title>
 </head>
 
@@ -24,10 +26,11 @@
         </span>
 
         <span class="search mx-3 w-full">
-          <input class="w-full h-8 p-4 rounded-lg bg-main-2 text-sm" type="search" id="search" placeholder="Search" />
+          <label for="search"></label>
+          <input type="search" id="search" placeholder="Search" />
         </span>
       </div>
-      <ul class="chat-list h-9/10 w-full p-3 bg-main-4 rounded-xl overflow-auto"></ul>
+      <ul id="chat-list" class="h-9/10 w-full p-3 bg-main-4 rounded-xl overflow-auto"></ul>
     </aside>
 
     <main id="chat-box" class="hidden h-full w-full sm:flex flex-col justify-between">
@@ -60,8 +63,9 @@
           </svg>
         </button>
 
-        <input class="w-5/6 p-4 mr-4 bg-main-4" type="text" id="mes" placeholder="Write a message...">
-
+        <label for="mes" class="w-5/6 p-3 mr-4 bg-main-4">
+          <input class="bg-transparent" type="text" id="mes" placeholder="Write a message...">
+        </label>
         <button id="face" class="mr-4 my-auto">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                stroke="currentColor" class="w-6 h-6">

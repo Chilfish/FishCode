@@ -5,13 +5,13 @@
     "isOwn": true
   },
   {
-    "date": "2022/12/30 12:00:02",
-    "mes": "nice to meet you!",
-    "isOwn": true
-  },
-  {
     "date": "2022/12/30 12:00:05",
     "mes": "hi~",
     "isOwn": false
+  },
+  {
+    "date": "2022/12/30 12:00:10",
+    "mes": "nice to meet you!",
+    "isOwn": true
   }
 ]

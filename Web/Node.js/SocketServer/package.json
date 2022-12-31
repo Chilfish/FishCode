@@ -3,20 +3,22 @@
   "type": "module",
   "version": "1.0.0",
   "description": "a Socket.io server",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "dev:css": "npx tailwindcss -i ./src/client/input.css -o ./dist/output.css --watch",
-    "serve": ""
+    "dev:client": "live-server -q --watch=src/client/ --open=src/client/login.html",
+    "dev:server": "nodemon src/server/ --watch src/server --delay 1s"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "ChillFish",
+  "license": "MIT",
   "dependencies": {
     "express": "^4.18.2",
-    "mongodb": "^4.13.0",
+    "mongoose": "^6.8.2",
     "socket.io": "^4.5.4"
   },
   "devDependencies": {
+    "live-server": "^1.2.2",
     "nodemon": "^2.0.20",
     "tailwindcss": "^3.2.4"
   }

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />
+  <script defer src="/public/lib/socket.io.min.js"></script>
+  <script defer src="script/login.js"></script>
+  <link rel="stylesheet" href="/dist/output.css" />
+  <link rel="icon" href="/public/img/logo.png" />
+  <title>Login</title>
+</head>
+
+<body class="w-screen h-screen flex bg-slate-900 text-white">
+  <div class="w-[90%] sm:w-2/5 h-3/5 sm:h-5/6 m-auto p-10 flex flex-col items-center rounded-xl bg-main-4 relative">
+    <header class="h-fit my-10 text-center">
+      <h1 class="text-3xl">Sign in/up to chat</h1>
+      <h2 class="my-4">Use your Chat Account</h2>
+    </header>
+
+    <main class="w-full sm:w-3/5">
+      <form class="m-auto" method="post">
+        <section class="mb-6">
+          <label for="username" class="block">Username</label>
+          <input class="h-12 mt-2" type="text" name="username" id="username">
+        </section>
+        <section class="mb-8">
+          <label for="password" class="block">Password</label>
+          <input class="h-12 mt-2 disabled:cursor-not-allowed" disabled type="password" name="password" id="password">
+        </section>
+      </form>
+
+      <div class="text-right mt-3">
+        <button id="submit" class="btn">Next</button>
+      </div>
+    </main>
+  </div>
+</body>
+
+</html>
