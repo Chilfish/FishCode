@@ -12,7 +12,12 @@ const form = $('form');
 function submit() {
   const name = username.value;
 
-  socket.emit('login', { name });
+  socket.emit('login', { name }, (res) => {
+    console.log(res);
+    if (res.mes === 200) {
+      window.location = '../client/';
+    }
+  });
 }
 
 form.onsubmit = $('#submit').onclick = () => submit();

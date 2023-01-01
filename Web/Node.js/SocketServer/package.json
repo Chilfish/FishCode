@@ -6,8 +6,8 @@
   "main": "src/index.js",
   "scripts": {
     "dev:css": "npx tailwindcss -i ./src/client/input.css -o ./dist/output.css --watch",
-    "dev:client": "live-server -q --watch=src/client/ --open=src/client/login.html",
-    "dev:server": "nodemon src/server/ --watch src/server --delay 1s"
+    "dev:client": "npx tailwindcss -i ./src/client/input.css -o ./dist/output.css && live-server -q --watch=src/client/ --open=src/client/login.html --wait=2000",
+    "dev:server": "nodemon src/server/ --watch src/server --delay 2"
   },
   "keywords": [],
   "author": "ChillFish",
@@ -15,7 +15,8 @@
   "dependencies": {
     "express": "^4.18.2",
     "mongoose": "^6.8.2",
-    "socket.io": "^4.5.4"
+    "socket.io": "^4.5.4",
+    "socket.io-client": "^4.5.4"
   },
   "devDependencies": {
     "live-server": "^1.2.2",

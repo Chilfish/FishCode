@@ -1,12 +1,16 @@
-'use strict';
+import {
+  sendMes,
+  sendTime,
+  loadChatList,
+  chatMain,
+  socket,
+} from './loadData.js';
+import { parseDate } from '../../utils/index.js';
 
-const socketUrl = 'ws://localhost:3000';
-const socket = io.connect(socketUrl, { transports: ['websocket'] });
-
-const input = $('#mes');
+const mesInput = $('#mes');
 const _sendMes = () => {
-  const text = input.value;
-  const now = new Date().toLocaleString();
+  const text = mesInput.value;
+  const now = parseDate(new Date());
 
   const data = {
     id: socket.id,
@@ -16,15 +20,15 @@ const _sendMes = () => {
 
   socket.emit('message', data);
 
-  sendTime(now);
+  sendTime(now.full);
   sendMes(text);
   loadChatList($('#chat-box .username').innerText, text);
 
-  input.value = '';
+  mesInput.value = '';
   chatMain.scrollTop = chatMain.scrollHeight;
 };
 
-input.onkeydown = (e) => {
+mesInput.onkeydown = (e) => {
   if (e.key === 'Enter') _sendMes();
 };
 $('#send').onclick = () => _sendMes();

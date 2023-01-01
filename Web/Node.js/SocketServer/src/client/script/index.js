@@ -1,7 +1,8 @@
-'use strict';
+import { loadChat, loadUser } from './loadData.js';
+import { socket } from './loadData.js';
 
 const chatBox = $('#chat-box');
-const chatMain = $('#chat-main');
+const chatList = $('#chat-list');
 let peoples;
 
 const active = 'active';
@@ -70,6 +71,47 @@ window.onhashchange = (e) => {
   }
 };
 
+/**
+ * User search handler
+ */
+
+const searchInput = $('#search'),
+  searchBtn = $('#search-btn'),
+  cancelBtn = $('#cancel-btn'),
+  searchRes = $('#search-res');
+
+async function searchUser() {
+  const value = searchInput.value;
+
+  socket.emit('search', value, (res) => {
+    const user = res.userInfo;
+    console.log(res);
+    searchRes.querySelector('img').src = '/public/img/' + user.face;
+    searchRes.querySelector('.username').innerText = user.name;
+
+    chatList.classList.add('hidden');
+    searchRes.classList.remove('hidden');
+    cancelBtn.classList.remove('hidden');
+  });
+
+  cancelBtn.onclick = () => {
+    chatList.classList.remove('hidden');
+    searchRes.classList.add('hidden');
+    cancelBtn.classList.add('hidden');
+
+    searchInput.value = '';
+  };
+}
+
+searchInput.onkeydown = (e) => {
+  if (e.key === 'Enter') searchUser();
+  cancelBtn.classList.remove('hidden');
+};
+searchBtn.onclick = () => searchUser();
+
+/**
+ * while windows refresh
+ */
 (async () => {
   await new loadUser().load();
   peoples = $$('#chat-list a');

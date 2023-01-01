@@ -1,14 +1,13 @@
-'use strict';
+import { parseDate } from '../../utils/index.js';
 
-/**
- * @param {string} e element
- * @returns {Element | null}
- */
-const $ = (e) => document.querySelector(e);
-const $$ = (e) => document.querySelectorAll(e);
-const baseUrl = 'http://127.0.0.1:8080/src/data';
+export const baseUrl = 'http://127.0.0.1:8080/src/data';
 
-class loadChat {
+const socketUrl = 'ws://localhost:3000';
+export const socket = io(socketUrl);
+
+export const chatMain = $('#chat-main');
+
+export class loadChat {
   constructor(user) {
     this.user = user;
     this.chatMes = $('template#chatMes').content;
@@ -21,29 +20,31 @@ class loadChat {
     $('header .username').innerText = this.user;
 
     return await (await fetch(`${baseUrl}/${this.user}.json`))
-        .json()
-        .then((res) => {
-          let ans = '';
+      .json()
+      .then((res) => {
+        let ans = '';
 
-          ans += firstTime(res[0].date);
-          res.forEach((ele) => {
-            const copy = section.cloneNode(true);
-            copy.classList.add(ele.isOwn ? 'right' : 'left');
-            copy.querySelector('p').innerText = ele.mes;
+        ans += firstTime(res[0].date);
+        res.forEach((ele) => {
+          const copy = section.cloneNode(true);
+          copy.classList.add(ele.isOwn ? 'right' : 'left');
+          copy.querySelector('p').innerText = ele.mes;
 
-            const time = copy.querySelector('.time');
-            time.innerText = ele.date.substring(11, 16);
-            time.dataset.time = ele.date;
+          const timer = copy.querySelector('.time'),
+            time = parseDate(ele.date);
 
-            ans += copy.outerHTML;
-          });
+          timer.innerText = time.shortTime;
+          timer.dataset.time = time.full;
 
-          chatMain.innerHTML = ans;
+          ans += copy.outerHTML;
         });
+
+        chatMain.innerHTML = ans;
+      });
   }
 }
 
-class loadUser {
+export class loadUser {
   async load() {
     const userCard = $('template#userCard').content.querySelector('li');
 
@@ -57,10 +58,10 @@ class loadUser {
 
         copy.querySelector('img').src = `/public/img/${ele.face}`;
         copy.querySelector('.username').innerText = ele.name;
-        copy.querySelector('.last-time').innerText = ele.lastTime.substring(
-            5,
-            16,
-        );
+
+        const time = parseDate(ele.lastTime);
+
+        copy.querySelector('.last-time').innerText = time.shortTime;
         copy.querySelector('.chatDes').innerText = ele.des;
 
         $('#chat-list').innerHTML += copy.outerHTML;
@@ -75,17 +76,18 @@ class loadUser {
  * @param {Date} time time of message sent
  * @param {string} pos the position of chat bubble, default at right side
  */
-function sendMes(text, time = new Date(), pos = 'right') {
+export function sendMes(text, time = new Date(), pos = 'right') {
   const mesBox = $('template#chatMes')
-      .content.querySelector('section')
-      .cloneNode(true);
+    .content.querySelector('section')
+    .cloneNode(true);
+
   mesBox.classList.add(pos);
   mesBox.querySelector('p').innerText = text;
 
   const timeBox = mesBox.querySelector('.time');
-  const now = time.toLocaleString();
-  timeBox.innerText = now.substring(11, 16);
-  timeBox.dataset.time = now;
+  const now = parseDate(time);
+  timeBox.innerText = now.shortTime;
+  timeBox.dataset.time = now.full;
 
   $('#chat-main').innerHTML += mesBox.outerHTML;
 }
@@ -93,9 +95,8 @@ function sendMes(text, time = new Date(), pos = 'right') {
 /**
  * 检查与上次对话的时间间隔，如果大于5分钟，就加上时间泡泡
  */
-function sendTime(now) {
-  const lastTime = [...$$('#chat-main .time')].at(-1)
-      .dataset.time;
+export function sendTime(now) {
+  const lastTime = [...$$('#chat-main .time')].at(-1).dataset.time;
 
   if (new Date(now) - new Date(lastTime) > 300000) {
     chatMain.innerHTML += firstTime(now);
@@ -107,9 +108,9 @@ function sendTime(now) {
  * @param {Date | string} time time of sent
  * @returns template of 'time bubble'
  */
-function firstTime(time) {
-  time = new Date(time).toLocaleString().substring(5, 16);
-  return `<div class="first-time">${time}</div>`;
+export function firstTime(time) {
+  time = parseDate(time);
+  return `<div class="first-time">${time.shortTime}</div>`;
 }
 
 /**
@@ -118,11 +119,10 @@ function firstTime(time) {
  * @param {string} text last chatting text
  * @param {Date} time last chatting time
  */
-function loadChatList(chatUser, text, time = new Date()) {
+export function loadChatList(chatUser, text, time = new Date()) {
   const chatCard = $(`#chat-list a[data-name="${chatUser}"]`);
+  time = parseDate(time);
 
   chatCard.querySelector('.chatDes').innerText = text;
-  chatCard.querySelector('.last-time').innerText = time
-      .toLocaleString()
-      .substring(5, 16);
+  chatCard.querySelector('.last-time').innerText = `${time.shortTime}`;
 }

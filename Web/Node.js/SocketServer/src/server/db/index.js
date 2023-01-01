@@ -27,7 +27,7 @@ mongoose.set('strictQuery', true);
 
 mongoose.connection.on('reconnectFailed', () => {
   process.nextTick(() => {
-    throw new Error('Mongoose couldn\'t reconnect to MongoDB server');
+    throw new Error("Mongoose couldn't reconnect to MongoDB server");
   });
 });
 

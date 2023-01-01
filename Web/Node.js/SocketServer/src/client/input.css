@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-#chat-list a {
+aside .userCard {
   @apply hover:bg-main-2 h-16 rounded-lg mb-2 py-1 px-2;
 }
 
