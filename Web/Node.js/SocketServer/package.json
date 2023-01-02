@@ -1,8 +1,8 @@
 {
-  "name": "socket-server",
+  "name": "socket-online-chat",
   "type": "module",
   "version": "1.0.0",
-  "description": "a Socket.io server",
+  "description": "online chat server/client base on Socket.io",
   "main": "src/index.js",
   "scripts": {
     "dev:css": "npx tailwindcss -i ./src/client/input.css -o ./dist/output.css --watch",
@@ -13,10 +13,14 @@
   "author": "ChillFish",
   "license": "MIT",
   "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
     "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.0",
     "mongoose": "^6.8.2",
     "socket.io": "^4.5.4",
-    "socket.io-client": "^4.5.4"
+    "socketio-jwt": "^4.6.2",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "live-server": "^1.2.2",

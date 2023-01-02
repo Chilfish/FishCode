@@ -1,45 +1,37 @@
-// import {MongoClient} from 'mongodb';
-//
-// const url = 'mongodb://localhost:27017/';
-// const client = new MongoClient(url);
-//
-// async function run() {
-//   try {
-//     const db = client.db('Chat');
-//     const users = db.collection('Users');
-//
-//     const data = {
-//       name: 'OrganicFish',
-//       face: 'user1.png',
-//     };
-//
-//     await users.insertOne(data);
-//   } finally {
-//     await client.close();
-//   }
-// }
-//
-// run().catch(console.dir);
+import mongoose, {Schema} from 'mongoose';
+import dotenv from 'dotenv';
 
-import mongoose from 'mongoose';
+dotenv.config();
 
 mongoose.set('strictQuery', true);
 
 mongoose.connection.on('reconnectFailed', () => {
   process.nextTick(() => {
-    throw new Error("Mongoose couldn't reconnect to MongoDB server");
+    throw new Error('Mongoose couldn\'t reconnect to MongoDB server');
   });
 });
 
 const userSchema = new mongoose.Schema({
+  uid: String,
   name: {
     type: String,
     required: true,
   },
   face: String,
+  registerTime: String,
+  friends: [{type: Schema.Types.ObjectId, ref: 'users'}],
+});
+
+const messageSchema = new mongoose.Schema({
+  poster: {type: Schema.Types.ObjectId, ref: 'users'},
+  receiver: {type: Schema.Types.ObjectId, ref: 'users'},
+  message: String,
+  time: String,
+  // type: String,
+  // read: Boolean,
 });
 
 // collection name will be automatically transformed to lowerCased and plural
-export const Users = mongoose.model('users', userSchema);
+export const User = mongoose.model('users', userSchema);
 
-export const dbUri = 'mongodb://localhost:27017/Chat';
+export const Message = mongoose.model('messages', messageSchema);

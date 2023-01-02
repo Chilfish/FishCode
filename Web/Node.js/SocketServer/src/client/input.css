@@ -38,6 +38,10 @@ input {
   @apply py-3 px-4 rounded-lg bg-main-2 hover:bg-main-1 active:bg-main-0;
 }
 
+.btn:disabled {
+  @apply cursor-not-allowed bg-gray-300 text-gray-700;
+}
+
 main.phone-chat {
   @apply absolute top-0 right-0 flex;
 }

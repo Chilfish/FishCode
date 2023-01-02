@@ -1,5 +1,5 @@
-import { loadChat, loadUser } from './loadData.js';
-import { socket } from './loadData.js';
+import {curUser, loadData} from './loadData.js';
+import {socket} from './loadData.js';
 
 const chatBox = $('#chat-box');
 const chatList = $('#chat-list');
@@ -7,6 +7,7 @@ let peoples;
 
 const active = 'active';
 const phoneWidth = 640;
+const load = new loadData();
 
 function backHome() {
   chatBox.classList.remove('phone-chat');
@@ -22,7 +23,7 @@ function changeChat() {
   peoples.forEach((ele) => {
     ele.onclick = async () => {
       const user = ele.dataset.name;
-      await new loadChat(user).load();
+      await load.chatRecord(user);
 
       if (document.body.offsetWidth <= phoneWidth) {
         toChat();
@@ -40,7 +41,7 @@ async function refreshLoad() {
     const query = new URL(url.href.replace('#/', '')).searchParams;
     const user = query.get('user');
 
-    await new loadChat(user).load();
+    await load.chatRecord(user);
 
     if (document.body.offsetWidth <= phoneWidth) {
       toChat();
@@ -54,68 +55,97 @@ async function refreshLoad() {
   }
 }
 
-$('.back').onclick = () => {
-  backHome();
-  let url = document.URL;
-  const index = url.indexOf('#');
-  if (index) {
-    url = url.substring(0, index);
-    history.pushState(null, null, url);
-  }
-};
-
-window.onhashchange = (e) => {
-  const url = new URL(e.newURL);
-  if (url.hash === '') {
+/**
+ * watch URL change
+ */
+function URLHandler() {
+  $('.back').onclick = () => {
     backHome();
-  }
-};
+    let url = document.URL;
+    const index = url.indexOf('#');
+    if (index) {
+      url = url.substring(0, index);
+      history.pushState(null, null, url);
+    }
+  };
+
+  window.onhashchange = (e) => {
+    const url = new URL(e.newURL);
+    if (url.hash === '') {
+      backHome();
+    }
+  };
+}
 
 /**
  * User search handler
  */
+function searchHandler() {
+  const searchInput = $('#search'),
+    searchBtn = $('#search-btn'),
+    cancelBtn = $('#cancel-btn'),
+    searchRes = $('#search-res'),
+    addBtn = $('#add-btn'),
+    notFound = $('#search-404');
 
-const searchInput = $('#search'),
-  searchBtn = $('#search-btn'),
-  cancelBtn = $('#cancel-btn'),
-  searchRes = $('#search-res');
-
-async function searchUser() {
-  const value = searchInput.value;
-
-  socket.emit('search', value, (res) => {
-    const user = res.userInfo;
-    console.log(res);
-    searchRes.querySelector('img').src = '/public/img/' + user.face;
-    searchRes.querySelector('.username').innerText = user.name;
-
-    chatList.classList.add('hidden');
-    searchRes.classList.remove('hidden');
-    cancelBtn.classList.remove('hidden');
-  });
-
-  cancelBtn.onclick = () => {
+  const ableList = () => {
     chatList.classList.remove('hidden');
     searchRes.classList.add('hidden');
     cancelBtn.classList.add('hidden');
+    notFound.classList.add('hidden');
+  };
 
+  async function searchUser() {
+    const value = searchInput.value;
+    notFound.classList.add('hidden');
+    searchRes.classList.add('hidden');
+
+    if (value === '') {
+      ableList();
+      return;
+    }
+
+    socket.emit('search', value, (res) => {
+      console.log(res);
+      if (res.mes === 200) {
+        const user = res.userInfo;
+        searchRes.querySelector('img').src = '/public/img/' + user.face;
+        searchRes.querySelector('.username').innerText = user.name;
+
+        searchRes.classList.remove('hidden');
+        addBtn.disabled = user.name === curUser;
+      } else if (res.mes === 404) {
+        notFound.classList.remove('hidden');
+      }
+    });
+
+    chatList.classList.add('hidden');
+    cancelBtn.classList.remove('hidden');
+  }
+
+  searchInput.onkeydown = async (e) => {
+    if (e.key === 'Enter') await searchUser();
+  };
+  searchBtn.onclick = () => searchUser();
+
+  cancelBtn.onclick = () => {
+    ableList();
     searchInput.value = '';
   };
 }
-
-searchInput.onkeydown = (e) => {
-  if (e.key === 'Enter') searchUser();
-  cancelBtn.classList.remove('hidden');
-};
-searchBtn.onclick = () => searchUser();
 
 /**
  * while windows refresh
  */
 (async () => {
-  await new loadUser().load();
+  URLHandler();
+
+  await load.userList();
   peoples = $$('#chat-list a');
 
-  changeChat();
   await refreshLoad();
+  changeChat();
+  searchHandler();
+
+  socket.emit('chatRecord', 'OrganicFish');
 })();

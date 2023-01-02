@@ -1,25 +1,27 @@
-import { parseDate } from '../../utils/index.js';
+import {parseDate} from '../../utils/index.js';
 
-export const baseUrl = 'http://127.0.0.1:8080/src/data';
+const baseUrl = 'http://127.0.0.1:8080/src/data';
 
 const socketUrl = 'ws://localhost:3000';
-export const socket = io(socketUrl);
 
+export const socket = io.connect(socketUrl, {
+  query: 'token=' + localStorage.getItem('token'),
+});
+
+export const curUser = localStorage.getItem('curUser');
 export const chatMain = $('#chat-main');
 
-export class loadChat {
-  constructor(user) {
-    this.user = user;
-    this.chatMes = $('template#chatMes').content;
-  }
+const chatMes = $('template#chatMes').content;
+const userCard = $('template#userCard').content.querySelector('li');
 
-  async load() {
-    const section = this.chatMes.querySelector('section');
+export class loadData {
+  async chatRecord(user) {
+    const section = chatMes.querySelector('section');
     const chatMain = $('#chat-main');
 
-    $('header .username').innerText = this.user;
+    $('header .username').innerText = user;
 
-    return await (await fetch(`${baseUrl}/${this.user}.json`))
+    return await (await fetch(`${baseUrl}/${user}.json`))
       .json()
       .then((res) => {
         let ans = '';
@@ -42,12 +44,8 @@ export class loadChat {
         chatMain.innerHTML = ans;
       });
   }
-}
 
-export class loadUser {
-  async load() {
-    const userCard = $('template#userCard').content.querySelector('li');
-
+  async userList() {
     return await (await fetch(`${baseUrl}/all.json`)).json().then((res) => {
       const data = res.people;
       data.forEach((ele) => {
@@ -68,6 +66,7 @@ export class loadUser {
       });
     });
   }
+
 }
 
 /**
@@ -80,6 +79,8 @@ export function sendMes(text, time = new Date(), pos = 'right') {
   const mesBox = $('template#chatMes')
     .content.querySelector('section')
     .cloneNode(true);
+
+  sendTime(time);
 
   mesBox.classList.add(pos);
   mesBox.querySelector('p').innerText = text;
@@ -95,7 +96,7 @@ export function sendMes(text, time = new Date(), pos = 'right') {
 /**
  * 检查与上次对话的时间间隔，如果大于5分钟，就加上时间泡泡
  */
-export function sendTime(now) {
+function sendTime(now) {
   const lastTime = [...$$('#chat-main .time')].at(-1).dataset.time;
 
   if (new Date(now) - new Date(lastTime) > 300000) {
@@ -109,8 +110,8 @@ export function sendTime(now) {
  * @returns template of 'time bubble'
  */
 export function firstTime(time) {
-  time = parseDate(time);
-  return `<div class="first-time">${time.shortTime}</div>`;
+  const parseTime = parseDate(time);
+  return `<div class="first-time">${parseTime.shortTime}</div>`;
 }
 
 /**
@@ -121,8 +122,8 @@ export function firstTime(time) {
  */
 export function loadChatList(chatUser, text, time = new Date()) {
   const chatCard = $(`#chat-list a[data-name="${chatUser}"]`);
-  time = parseDate(time);
+  const parseTime = parseDate(time);
 
   chatCard.querySelector('.chatDes').innerText = text;
-  chatCard.querySelector('.last-time').innerText = `${time.shortTime}`;
+  chatCard.querySelector('.last-time').innerText = `${parseTime.shortTime}`;
 }

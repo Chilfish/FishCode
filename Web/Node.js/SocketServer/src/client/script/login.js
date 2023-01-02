@@ -1,7 +1,6 @@
 'use strict';
 
-const socketUrl = 'ws://localhost:3000';
-const socket = io.connect(socketUrl, { transports: ['websocket'] });
+const socketPort = 3000;
 
 const $ = (e) => document.querySelector(e);
 const $$ = (e) => document.querySelectorAll(e);
@@ -9,15 +8,23 @@ const $$ = (e) => document.querySelectorAll(e);
 const username = $('#username');
 const form = $('form');
 
-function submit() {
+async function submit() {
   const name = username.value;
 
-  socket.emit('login', { name }, (res) => {
-    console.log(res);
-    if (res.mes === 200) {
+  await (
+    await fetch(`http://localhost:${socketPort}/login`, {
+      body: JSON.stringify({name}),
+      headers: {'content-type': 'application/json'},
+      method: 'POST',
+    })
+  )
+    .json()
+    .then((res) => {
+      localStorage.setItem('token', res);
+      localStorage.setItem('curUser', name);
+
       window.location = '../client/';
-    }
-  });
+    });
 }
 
 form.onsubmit = $('#submit').onclick = () => submit();

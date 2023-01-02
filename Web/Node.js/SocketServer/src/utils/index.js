@@ -3,7 +3,7 @@ function fillZero(x) {
   return x.length === 1 ? `0${x}` : x;
 }
 
-export function parseDate(time) {
+export function parseDate(time = new Date()) {
   if (typeof time === 'string') {
     time = new Date(time);
   }

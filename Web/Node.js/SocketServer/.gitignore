@@ -1,1 +1,8 @@
+node_modules
+
+out/
+dist/
+
+.env
+
 !socket.io*

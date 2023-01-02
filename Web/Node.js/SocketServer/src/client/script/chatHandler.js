@@ -1,11 +1,5 @@
-import {
-  sendMes,
-  sendTime,
-  loadChatList,
-  chatMain,
-  socket,
-} from './loadData.js';
-import { parseDate } from '../../utils/index.js';
+import {sendMes, loadChatList, chatMain, socket} from './loadData.js';
+import {parseDate} from '../../utils/index.js';
 
 const mesInput = $('#mes');
 const _sendMes = () => {
@@ -20,7 +14,6 @@ const _sendMes = () => {
 
   socket.emit('message', data);
 
-  sendTime(now.full);
   sendMes(text);
   loadChatList($('#chat-box .username').innerText, text);
 
