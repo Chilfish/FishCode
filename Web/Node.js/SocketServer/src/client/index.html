@@ -21,9 +21,10 @@
 </head>
 
 <body class="w-screen h-screen flex bg-slate-900 text-white">
-  <div class="w-[90%] sm:w-5/6 h-5/6 m-auto flex rounded-xl bg-main-4 relative">
+  <div class="w-[90%] sm:w-5/6 h-5/6 m-auto flex rounded-xl bg-main-4 relative  transition-all">
 
-    <aside class="w-full sm:w-[27rem] bg-main-4 rounded-xl sm:border-r-2 sm:rounded-l-xl sm:border-r-main-5">
+    <aside
+           class="w-full sm:w-[27rem] bg-main-4 rounded-xl sm:border-r-2 sm:rounded-l-xl sm:border-r-main-5 transition delay-500 ease-in-out">
       <div class="h-1/10 flex justify-between p-4 mt-2 text-main-0 relative">
 
         <div id="more-page"
@@ -50,7 +51,7 @@
 
         <span class="mx-3 w-full relative">
           <label for="search"></label>
-          <input class="px-8" type="search" id="search" placeholder="Search" />
+          <input class="px-8" type="search" id="search" autocomplete="off" placeholder="Search" />
 
           <span class="icon">
             <button id="search-btn" class="absolute top-2 left-2 hover:text-main-1">
@@ -108,9 +109,10 @@
         </div>
       </header>
 
-      <main id="chat-main" class="h-[55rem] p-4 overflow-auto relative flex flex-col bg-chat"></main>
+      <main id="chat-main"
+            class="h-[55rem] p-4 pb-0 overflow-auto relative flex flex-col bg-chat transition delay-500 ease-in"></main>
 
-      <footer class="send h-20 flex items-center px-4">
+      <footer class="send min-h-14  flex items-center px-4">
         <button id="sendFile" class="mr-3 my-auto">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                stroke="currentColor" class="w-6 h-6">
@@ -119,8 +121,10 @@
           </svg>
         </button>
 
-        <label for="mes"></label>
-        <input class="bg-transparent w-5/6 p-3 mr-4 bg-main-4" type="text" id="mes" placeholder="Write a message...">
+        <div class="textarea w-full min-h-14 py-2 mr-4 bg-main-4 ">
+          <textarea class="w-full max-h-40  border-0 bg-transparent focus:outline-none resize-none" rows="1" type="text"
+                    autocomplete="off" id="mes" placeholder="Write a message..."></textarea>
+        </div>
 
         <button id="face" class="mr-4 my-auto">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -145,7 +149,7 @@
     <li data-name>
       <a href="" class="userCard flex w-full h-full">
         <img src="" alt="avatar" class="w-11 rounded-[50%] mr-3 my-auto" />
-        <div class="user my-auto min-w-0 w-[16rem] relative">
+        <div class="user my-auto min-w-0 w-full relative">
           <div class="username w-fit max-w-[8rem] truncate"></div>
           <div class="last-time absolute top-0 right-2 text-sm"></div>
           <div class="chatDes text-gray-300 text-xs mt-1 truncate"></div>

@@ -17,8 +17,9 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
-  face: String,
+  face: {type: String, default: 'default.png'},
   registerTime: String,
+  addReq: [{type: Schema.Types.ObjectId, ref: 'users'}], // request of add friend
   friends: [{type: Schema.Types.ObjectId, ref: 'users'}],
 });
 
@@ -30,6 +31,15 @@ const messageSchema = new Schema({
   // type: String,
   // read: Boolean,
 });
+
+export const orFilter = (user1, user2) => {
+  return {
+    $or: [
+      {sender: user1._id, receiver: user2._id},
+      {sender: user2._id, receiver: user1._id},
+    ],
+  };
+};
 
 // collection name will be automatically transformed to lowerCased and plural
 export const User = mongoose.model('users', userSchema);

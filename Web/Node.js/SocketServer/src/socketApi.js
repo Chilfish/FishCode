@@ -1,10 +1,12 @@
 export const api = {
-  getFriends: 'getFriends',
-  addFriend: 'addFriend',
-  search: 'search',
+  getFriends: 'get friends',
+  addFriend: 'add friend',
+  addReq: 'add request',
+  AddPassed: 'add request passed',
+  search: 'search people',
 
-  join: 'join',
-  sendMessage: 'sendMessage',
-  message: 'message',
-  chatRecord: 'chatRecord',
+  join: 'join to chat',
+  sendMessage: 'send message',
+  message: 'got message',
+  chatRecord: 'chat record',
 };

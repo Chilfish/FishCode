@@ -41,10 +41,11 @@ export function chatRecord(user) {
   });
 }
 
-export function userList() {
+export function loadList() {
   return new Promise((resolve, reject) => {
     try {
       socket.emit(api.getFriends, curUser, (friends) => {
+        let out = '';
         friends.forEach((ele) => {
           const copy = userCard.cloneNode(true);
           copy.dataset.name = ele.name;
@@ -57,11 +58,12 @@ export function userList() {
 
           if (ele.time !== '') {
             copy.querySelector('.last-time').innerText = parseDate(
-              ele.time,
+              ele.time
             ).shortTime;
           }
-          $('#chat-list').innerHTML += copy.outerHTML;
+          out += copy.outerHTML;
         });
+        chatList.innerHTML = out;
         resolve();
       });
     } catch (err) {
@@ -125,8 +127,10 @@ function sendTime(now) {
 export function loadFriendsList(message, receiver, time) {
   const chatCard = $(`#chat-list li[data-name="${receiver}"]`);
   chatList.removeChild(chatCard);
-
-  chatCard.querySelector('.chatDes').innerText = message;
+  console.log(message);
+  chatCard.querySelector('.chatDes').innerText = message
+    .replaceAll('\n', ' ')
+    .substring(0, 15);
   chatCard.querySelector('.last-time').innerText = `${
     parseDate(time).shortTime
   }`;
@@ -141,6 +145,10 @@ export function messageHandler() {
   const _sendMes = () => {
     const message = mesInput.value;
     const data = {receiver, message};
+    const check = new Set(message);
+    if ((check.size === 1 && check.has('\n')) || !check.size) {
+      return;
+    }
 
     socket.emit(api.sendMessage, data, (time) => {
       sendMes(message, receiver, time);
@@ -156,8 +164,20 @@ export function messageHandler() {
     loadFriendsList(chat.message, receiver, chat.time);
   });
 
-  mesInput.onkeydown = (e) => {
-    if (e.key === 'Enter') _sendMes();
+  mesInput.oninput = function () {
+    this.style.height = '';
+    let height = this.scrollHeight + this.offsetHeight - this.clientHeight;
+    this.style.height = height + 'px';
+    chatMain.scrollTop = chatMain.scrollHeight;
   };
+
   $('#send').onclick = () => _sendMes();
+  let prev = '';
+  mesInput.onkeydown = function (e) {
+    if (e.key === 'Enter' && prev === 'Control') {
+      this.style.height = '';
+      _sendMes();
+    }
+    prev = e.key;
+  };
 }

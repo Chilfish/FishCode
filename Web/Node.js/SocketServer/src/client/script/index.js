@@ -1,12 +1,13 @@
 import {
   curUser,
-  userList,
+  loadList,
   chatList,
   chatMain,
   chatRecord,
   messageHandler,
+  socket,
+  loadFriendsList,
 } from './loadData.js';
-import {socket} from './loadData.js';
 import {api} from '../../socketApi.js';
 
 const chatBox = $('#chat-box');
@@ -52,6 +53,7 @@ async function refreshLoad() {
 
     await chatRecord(user);
     socket.emit(api.join, user);
+    messageHandler();
     chatMain.scrollTop = chatMain.scrollHeight;
 
     if (document.body.offsetWidth <= phoneWidth) {
@@ -149,6 +151,22 @@ function searchHandler() {
     ableList();
     searchInput.value = '';
   };
+
+  addBtn.onclick = (e) => {
+    const user = e.target.offsetParent.querySelector('.username').innerText;
+
+    // socket.emit(api.addReq, user, (res) => {
+    //   console.log(res);
+    // });
+    socket.emit(api.addFriend, user, (res) => {
+      if (res.mes === 200) {
+        setTimeout(async () => {
+          ableList();
+          await loadList();
+        }, 1000);
+      }
+    });
+  };
 }
 
 function logoutHandler() {
@@ -167,21 +185,11 @@ function logoutHandler() {
   $('#more-btn').onclick = () => $('#more-page').classList.toggle('hidden');
 }
 
-function addFriend() {
-  const addBtn = $('#add-btn');
-  addBtn.onclick = (e) => {
-    const user = e.target.offsetParent.querySelector('.username').innerText;
-    socket.emit(api.addFriend, user, (res) => {
-      addBtn.disabled = res.mes === 200;
-    });
-  };
-}
-
 /**
  * while windows refresh
  */
 (async () => {
-  await userList().then(() => {
+  await loadList().then(() => {
     friends = $$('#chat-list li');
   });
 
@@ -190,6 +198,5 @@ function addFriend() {
   changeChat();
 
   searchHandler();
-  addFriend();
   logoutHandler();
 })();

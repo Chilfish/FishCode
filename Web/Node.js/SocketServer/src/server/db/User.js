@@ -1,4 +1,4 @@
-import {User, Message} from './index.js';
+import {User, Message, orFilter} from './index.js';
 
 export async function findUser(user, curUser) {
   try {
@@ -22,19 +22,15 @@ export async function findFriends(user) {
 
     return await Promise.all(
       list.map(async (friend) => {
-        const res = await Message.find({
-          $or: [
-            {sender: friend._id, receiver: userId._id},
-            {sender: userId._id, receiver: friend._id},
-          ],
-        })
+        const res = await Message.find(orFilter(friend, userId))
           .sort({time: -1})
           .limit(1);
+
         let message = '',
           time = '';
 
         if (res.length) {
-          message = res[0].message;
+          message = res[0].message.replaceAll('\n', ' ').substring(0, 15);
           time = res[0].time;
         }
 
@@ -44,6 +40,22 @@ export async function findFriends(user) {
     );
   } catch (err) {
     console.error(err);
+  }
+}
+
+export async function addReq(user, friend) {
+  try {
+    const userId = await getId(user),
+      friendId = await getId(friend);
+
+    await User.findByIdAndUpdate(friendId, {
+      $addToSet: {
+        addReq: userId,
+      },
+    });
+    return 200;
+  } catch (err) {
+    return 400;
   }
 }
 

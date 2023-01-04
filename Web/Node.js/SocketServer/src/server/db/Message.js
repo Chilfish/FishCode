@@ -1,4 +1,4 @@
-import {Message, User} from './index.js';
+import {Message, User, orFilter} from './index.js';
 import {parseDate} from '../../utils/index.js';
 import {getId} from './User.js';
 
@@ -7,6 +7,10 @@ export async function addMessage(sender, receiver, message) {
     const senderId = await getId(sender),
       receiverId = await getId(receiver),
       time = parseDate().fullTime;
+    message.replace(/[<>&"]/g, function (c) {
+      return {'<': '&lt;', '>': '&gt;', '&': '&amp;', '"': '&quot;'}[c];
+    });
+    console.log(message);
 
     const newMessage = new Message({
       sender: senderId,
@@ -22,6 +26,17 @@ export async function addMessage(sender, receiver, message) {
   }
 }
 
+export async function deleteMessage(sender, receiver) {
+  try {
+    const senderId = await getId(sender),
+      receiverId = await getId(receiver);
+
+    return Message.deleteMany(orFilter(senderId, receiverId));
+  } catch (err) {
+    console.error(err);
+  }
+}
+
 export async function chatRecord(user1, user2) {
   try {
     if (typeof user1 === 'string' || typeof user2 === 'string') {
@@ -29,12 +44,7 @@ export async function chatRecord(user1, user2) {
       user2 = await getId(user2);
     }
 
-    const list = await Message.find({
-      $or: [
-        {sender: user1._id, receiver: user2._id},
-        {sender: user2._id, receiver: user1._id},
-      ],
-    });
+    const list = await Message.find(orFilter(user1, user2));
 
     return await Promise.all(
       list.map(async (chat) => {

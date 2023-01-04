@@ -1,10 +1,8 @@
 import mongoose, {mongo} from 'mongoose';
 import {getId, findUser} from '../server/db/User.js';
-import {addMessage, chatRecord} from '../server/db/Message.js';
+import {addMessage, chatRecord, deleteMessage} from '../server/db/Message.js';
 
 await mongoose.connect('mongodb://localhost:27017/Chat');
-
-const filter = {name: 'ChillFish'};
 
 // await User.updateOne(filter, {
 //   $addToSet: {
@@ -40,7 +38,7 @@ async function randomMes() {
   }
 }
 
-const user = ['OrganicFish', 'ChillFish', 'Fish'];
+const user = ['OrganicFish', 'ChillFish', 'Fish', '有机鱼'];
 const userId = [];
 for (const ele of user) {
   userId.push(await getId(ele));
@@ -53,6 +51,14 @@ for (const ele of user) {
 // await findUser('Fish', 'ChillFish').then((res) => {
 //   console.log(res);
 // });
+
+await deleteMessage(user[1], user[0])
+  .then((res) => {
+    console.log(res);
+  })
+  .catch((err) => {
+    console.error(err);
+  });
 
 await mongoose.disconnect();
 
@@ -83,4 +89,4 @@ friends.sort((a, b) => {
   return Date.parse(b.time) - Date.parse(a.time);
 });
 
-console.log(friends);
+// console.log(friends);

@@ -1,4 +1,4 @@
-import {addFriend, findFriends, findUser} from './db/User.js';
+import {addFriend, addReq, findFriends, findUser} from './db/User.js';
 import {addMessage, chatRecord} from './db/Message.js';
 import {api} from '../socketApi.js';
 
@@ -27,9 +27,15 @@ export function socketHandler(socket, curUser) {
       });
   });
 
+  socket.on(api.addReq, async (friend, callback) => {
+    await addReq(curUser, friend).then((mes) => {
+      callback({mes});
+    });
+  });
+
   socket.on(api.addFriend, async (friend, callback) => {
-    await addFriend(curUser, friend).then((res) => {
-      callback({mes: res});
+    await addFriend(curUser, friend).then((mes) => {
+      callback({mes});
     });
   });
 
@@ -64,9 +70,7 @@ export function socketHandler(socket, curUser) {
     // console.log('chatter: ', user, curUser);
 
     await chatRecord(user, curUser).then((chats) => {
-      if (typeof callback === 'function') {
-        callback(chats);
-      }
+      callback(chats);
     });
   });
 }
