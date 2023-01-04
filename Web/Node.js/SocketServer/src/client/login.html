@@ -5,7 +5,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />
-  <script defer src="/public/socket.io/socket.io.min.js"></script>
   <script defer src="script/login.js"></script>
   <link rel="stylesheet" href="/dist/output.css" />
   <link rel="icon" href="/public/img/logo.png" />
@@ -23,7 +22,7 @@
       <form class="m-auto" method="post">
         <section class="mb-6">
           <label for="username" class="block">Username</label>
-          <input class="h-12 mt-2" type="text" name="username" id="username">
+          <input class="h-12 mt-2" type="text" name="username" id="username" min="2" max="20">
         </section>
         <section class="mb-8">
           <label for="password" class="block">Password</label>

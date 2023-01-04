@@ -1,13 +1,13 @@
 import express from 'express';
 import cors from 'cors';
-import dotenv from 'dotenv';
 import {createServer} from 'http';
 import {Server} from 'socket.io';
-import socketioJWT from 'socketio-jwt';
 import mongoose from 'mongoose';
+import dotenv from 'dotenv';
 
 import {login} from './db/auth.js';
-import {socketHandler} from './socket/index.js';
+import {socketHandler} from './socket.js';
+import {Token} from '../utils/JWT.js';
 
 const app = express();
 const httpServer = createServer(app);
@@ -15,7 +15,6 @@ const io = new Server(httpServer, {cors: true});
 
 dotenv.config();
 const port = process.env.SOCKET_PORT || 3000;
-const secret = process.env.JWT_TOKENS_SECRET;
 const dbUri = process.env.MONGODB || 'mongodb://localhost:27017/Chat';
 
 app
@@ -23,30 +22,36 @@ app
   .use(express.json())
   .use(express.urlencoded({extended: false}));
 
-io.use(
-  socketioJWT.authorize({
-    secret,
-    handshake: true,
-  }),
-);
+io.on('connection', async (socket) => {
+  let token = socket.request._query.token,
+    curUser = '';
 
-io.on('connection', (socket) => {
-  const curUser = socket.decoded_token.name.name;
-  console.log(
-    `new connection! id: ${socket.id}, username: ${curUser}`,
-  );
+  await Token.decrypt(token)
+    .then((res) => {
+      curUser = res.name.name;
+    })
+    .catch((err) => {
+      console.log('error! ' + err);
+      socket.emit('unauthorized');
+      socket.disconnect();
+    });
+
+  console.log(`new connection! id: ${socket.id}, username: ${curUser}`);
   socketHandler(socket, curUser);
-});
 
-io.on('disconnection', (socket) => {
-  console.log(socket.id + ' is disconnected');
+  socket.on('disconnect', (reason) => {
+    console.log(`\n${curUser} is disconnected... reason: ${reason}`);
+  });
 });
 
 app.post('/login', async (req, res) => {
-  const name = req.body.name;
+  console.log(req.body);
+  const {name, register} = req.body;
+  let newUser = false;
 
-  await login(name).then((token) => {
-    res.json(token);
+  await login(name, register).then((user) => {
+    if (user.mes === 404) newUser = true;
+    res.json({newUser, token: user.token});
   });
 });
 

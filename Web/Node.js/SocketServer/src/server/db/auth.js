@@ -7,28 +7,32 @@ import {parseDate} from '../../utils/index.js';
 /**
  * user login handler
  * @param {string} user username
+ * @param {boolean} isNew is new user
  * @returns login token
  */
-export async function login(user) {
+export async function login(user, isNew) {
   try {
-    let userInfo = await User.findOne({name: user});
+    let token = '',
+      userInfo;
 
-    // register new user
-    if (!userInfo) {
+    if (isNew) {
       const newUser = new User({
         uid: uuid(),
         name: user,
         face: 'default.jpg',
-        registerTime: parseDate().full,
-      });
-
-      await newUser.save().catch((err) => {
-        console.error(err);
+        registerTime: parseDate().fullTime,
       });
       userInfo = newUser;
+      await newUser.save();
+    } else {
+      userInfo = await User.findOne({name: user});
+      if (!userInfo) {
+        return {mes: 404, token};
+      }
     }
 
-    return tokenHandler(userInfo);
+    token = await tokenHandler(userInfo);
+    return {mes: 200, token};
   } catch (err) {
     console.error(err);
   }
@@ -36,7 +40,7 @@ export async function login(user) {
 
 /**
  * generate token
- * @param {Users} user username
+ * @param {User} user username
  */
 async function tokenHandler(user) {
   try {

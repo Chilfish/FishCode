@@ -1,13 +1,19 @@
-import {curUser, loadData} from './loadData.js';
+import {
+  curUser,
+  userList,
+  chatList,
+  chatMain,
+  chatRecord,
+  messageHandler,
+} from './loadData.js';
 import {socket} from './loadData.js';
+import {api} from '../../socketApi.js';
 
 const chatBox = $('#chat-box');
-const chatList = $('#chat-list');
-let peoples;
+let friends;
 
 const active = 'active';
 const phoneWidth = 640;
-const load = new loadData();
 
 function backHome() {
   chatBox.classList.remove('phone-chat');
@@ -20,16 +26,19 @@ function toChat() {
 }
 
 function changeChat() {
-  peoples.forEach((ele) => {
+  friends.forEach((ele) => {
     ele.onclick = async () => {
       const user = ele.dataset.name;
-      await load.chatRecord(user);
+      await chatRecord(user);
+
+      socket.emit(api.join, user);
+      messageHandler();
 
       if (document.body.offsetWidth <= phoneWidth) {
         toChat();
       } else {
-        $(`a.${active}`)?.classList.toggle(active);
-        ele.classList.toggle(active);
+        chatList.querySelector(`a.${active}`)?.classList.toggle(active);
+        ele.querySelector(`a`).classList.toggle(active);
       }
     };
   });
@@ -39,16 +48,18 @@ async function refreshLoad() {
   const url = new URL(document.URL);
   if (url.hash !== '') {
     const query = new URL(url.href.replace('#/', '')).searchParams;
-    const user = query.get('user');
+    const user = query.get('chatUser');
 
-    await load.chatRecord(user);
+    await chatRecord(user);
+    socket.emit(api.join, user);
+    chatMain.scrollTop = chatMain.scrollHeight;
 
     if (document.body.offsetWidth <= phoneWidth) {
       toChat();
     } else {
-      peoples.forEach((ele) => {
+      friends.forEach((ele) => {
         if (ele.dataset.name === user) {
-          ele.classList.add(active);
+          ele.querySelector('a').classList.add(active);
         }
       });
     }
@@ -106,14 +117,20 @@ function searchHandler() {
     }
 
     socket.emit('search', value, (res) => {
-      console.log(res);
+      const user = res.userInfo;
       if (res.mes === 200) {
-        const user = res.userInfo;
+        if (res.isFriend || user.name === curUser) {
+          addBtn.disabled = true;
+          addBtn.innerText = 'added';
+        } else {
+          addBtn.disabled = false;
+          addBtn.innerText = 'add';
+        }
+
         searchRes.querySelector('img').src = '/public/img/' + user.face;
         searchRes.querySelector('.username').innerText = user.name;
 
         searchRes.classList.remove('hidden');
-        addBtn.disabled = user.name === curUser;
       } else if (res.mes === 404) {
         notFound.classList.remove('hidden');
       }
@@ -134,18 +151,45 @@ function searchHandler() {
   };
 }
 
+function logoutHandler() {
+  $('#logout-btn').onclick = () => {
+    try {
+      localStorage.removeItem('token');
+      localStorage.removeItem('curUser');
+
+      socket.close();
+      window.location = './login.html';
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  $('#more-btn').onclick = () => $('#more-page').classList.toggle('hidden');
+}
+
+function addFriend() {
+  const addBtn = $('#add-btn');
+  addBtn.onclick = (e) => {
+    const user = e.target.offsetParent.querySelector('.username').innerText;
+    socket.emit(api.addFriend, user, (res) => {
+      addBtn.disabled = res.mes === 200;
+    });
+  };
+}
+
 /**
  * while windows refresh
  */
 (async () => {
-  URLHandler();
-
-  await load.userList();
-  peoples = $$('#chat-list a');
+  await userList().then(() => {
+    friends = $$('#chat-list li');
+  });
 
   await refreshLoad();
+  URLHandler();
   changeChat();
-  searchHandler();
 
-  socket.emit('chatRecord', 'OrganicFish');
+  searchHandler();
+  addFriend();
+  logoutHandler();
 })();

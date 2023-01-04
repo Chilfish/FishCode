@@ -1,8 +1,14 @@
-import {User} from './index.js';
+import {User, Message} from './index.js';
 
-export async function findUser(user) {
+export async function findUser(user, curUser) {
   try {
-    return User.findOne({name: user});
+    const isFriends =
+      (await User.findOne({name: curUser}).populate('friends'))?.friends.filter(
+        (friend) => friend.name === user
+      ).length !== 0;
+
+    const info = await User.findOne({name: user});
+    return {isFriends, info};
   } catch (err) {
     console.error(err);
   }
@@ -10,7 +16,32 @@ export async function findUser(user) {
 
 export async function findFriends(user) {
   try {
-    return (await User.findOne({name: user}).populate('friends'))?.friends;
+    const list = (await User.findOne({name: user}).populate('friends'))
+        ?.friends,
+      userId = await getId(user);
+
+    return await Promise.all(
+      list.map(async (friend) => {
+        const res = await Message.find({
+          $or: [
+            {sender: friend._id, receiver: userId._id},
+            {sender: userId._id, receiver: friend._id},
+          ],
+        })
+          .sort({time: -1})
+          .limit(1);
+        let message = '',
+          time = '';
+
+        if (res.length) {
+          message = res[0].message;
+          time = res[0].time;
+        }
+
+        const {name, face} = friend;
+        return {name, face, message, time};
+      })
+    );
   } catch (err) {
     console.error(err);
   }
@@ -18,18 +49,25 @@ export async function findFriends(user) {
 
 export async function addFriend(user, friend) {
   try {
-    return User.update(
-      {name: user},
-      {
-        $addToSet: {
-          friends: await getId(friend),
-        },
-      },
-    );
-  } catch (err) {
-    console.error(err);
-  }
+    const userId = await getId(user),
+      friendId = await getId(friend);
 
+    await User.findByIdAndUpdate(userId, {
+      $addToSet: {
+        friends: friendId,
+      },
+    });
+
+    await User.findByIdAndUpdate(friendId, {
+      $addToSet: {
+        friends: userId,
+      },
+    });
+
+    return 200;
+  } catch (err) {
+    return 400;
+  }
 }
 
 export async function getId(username) {

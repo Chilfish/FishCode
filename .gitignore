@@ -25,4 +25,8 @@ tempCodeRunnerFile.*
 *ignore*
 *.min.*
 
+*.zip
+*.7z
+*.rar
+
 !.gitignore

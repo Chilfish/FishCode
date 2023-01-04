@@ -7,11 +7,11 @@ mongoose.set('strictQuery', true);
 
 mongoose.connection.on('reconnectFailed', () => {
   process.nextTick(() => {
-    throw new Error('Mongoose couldn\'t reconnect to MongoDB server');
+    throw new Error("Mongoose couldn't reconnect to MongoDB server");
   });
 });
 
-const userSchema = new mongoose.Schema({
+const userSchema = new Schema({
   uid: String,
   name: {
     type: String,
@@ -22,8 +22,8 @@ const userSchema = new mongoose.Schema({
   friends: [{type: Schema.Types.ObjectId, ref: 'users'}],
 });
 
-const messageSchema = new mongoose.Schema({
-  poster: {type: Schema.Types.ObjectId, ref: 'users'},
+const messageSchema = new Schema({
+  sender: {type: Schema.Types.ObjectId, ref: 'users'},
   receiver: {type: Schema.Types.ObjectId, ref: 'users'},
   message: String,
   time: String,

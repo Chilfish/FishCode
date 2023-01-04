@@ -5,7 +5,7 @@ function fillZero(x) {
 
 export function parseDate(time = new Date()) {
   if (typeof time === 'string') {
-    time = new Date(time);
+    time = new Date(time.substring(0, 19));
   }
 
   const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
@@ -17,6 +17,13 @@ export function parseDate(time = new Date()) {
     seconds = fillZero(time.getSeconds()),
     day = days.at(time.getDay());
 
+  const shortDate = `${month}/${date}`,
+    longDate = `${year}/${shortDate}`,
+    shortTime = `${hours}:${minutes}`,
+    longTime = `${shortTime}:${seconds}`,
+    fullTime = `${longDate} ${longTime}`,
+    fullDate = `${fullTime} ${day}`;
+
   return {
     year,
     month,
@@ -25,7 +32,12 @@ export function parseDate(time = new Date()) {
     minutes,
     seconds,
     day,
-    shortTime: `${hours}:${minutes}`,
-    full: `${year}/${month}/${date} ${hours}:${minutes}:${seconds} ${day}`,
+
+    shortDate,
+    shortTime,
+    longDate,
+    longTime,
+    fullDate,
+    fullTime,
   };
 }

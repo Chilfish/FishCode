@@ -15,7 +15,6 @@
   </script>
 
   <script defer src="script/loadData.js" type="module"></script>
-  <script defer src="script/chatHandler.js" type="module"></script>
   <script defer src="script/index.js" type="module"></script>
 
   <title>Socket.io Chat</title>
@@ -25,8 +24,25 @@
   <div class="w-[90%] sm:w-5/6 h-5/6 m-auto flex rounded-xl bg-main-4 relative">
 
     <aside class="w-full sm:w-[27rem] bg-main-4 rounded-xl sm:border-r-2 sm:rounded-l-xl sm:border-r-main-5">
-      <div class="h-1/10 flex justify-between p-4 mt-2 text-main-0">
-        <span class="more py-1">
+      <div class="h-1/10 flex justify-between p-4 mt-2 text-main-0 relative">
+
+        <div id="more-page"
+             class="hidden absolute top-14 left-2 z-10 p-2 pb-0 w-1/2 sm:h-30 bg-main-5 rounded-xl drop-shadow-2xl text-white text-sm">
+          <ul class="flex flex-col">
+            <button id="logout-btn" class="btn flex items-center mb-2">
+              <span class="mx-2">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                     stroke="currentColor" class="w-6 h-6">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
+                </svg>
+              </span>
+              <span>Log out</span>
+            </button>
+          </ul>
+        </div>
+
+        <span id="more-btn" class="py-1 hover:cursor-pointer hover:text-main-1">
           <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
             <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
           </svg>
@@ -94,7 +110,7 @@
 
       <main id="chat-main" class="h-[55rem] p-4 overflow-auto relative flex flex-col bg-chat"></main>
 
-      <footer class="send h-12 sm:h-16 flex items-center px-4">
+      <footer class="send h-20 flex items-center px-4">
         <button id="sendFile" class="mr-3 my-auto">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                stroke="currentColor" class="w-6 h-6">
@@ -103,9 +119,8 @@
           </svg>
         </button>
 
-        <label for="mes" class="w-5/6 p-3 mr-4 bg-main-4">
-          <input class="bg-transparent" type="text" id="mes" placeholder="Write a message...">
-        </label>
+        <label for="mes"></label>
+        <input class="bg-transparent w-5/6 p-3 mr-4 bg-main-4" type="text" id="mes" placeholder="Write a message...">
 
         <button id="face" class="mr-4 my-auto">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -127,9 +142,9 @@
   </div>
 
   <template id="userCard">
-    <li>
-      <a href="" data-name class="userCard flex w-full h-full">
-        <img src="" alt="user" class="w-11 rounded-[50%] mr-3 my-auto" />
+    <li data-name>
+      <a href="" class="userCard flex w-full h-full">
+        <img src="" alt="avatar" class="w-11 rounded-[50%] mr-3 my-auto" />
         <div class="user my-auto min-w-0 w-[16rem] relative">
           <div class="username w-fit max-w-[8rem] truncate"></div>
           <div class="last-time absolute top-0 right-2 text-sm"></div>

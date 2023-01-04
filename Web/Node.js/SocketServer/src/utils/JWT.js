@@ -18,8 +18,9 @@ export const Token = {
 
   decrypt(token) {
     return new Promise((resolve, reject) => {
+      if (!token) return reject(404);
       jwt.verify(token, secret, {algorithm}, (err, payload) => {
-        if (err) return reject(err);
+        if (err) return reject(404);
         resolve(payload);
       });
     });
