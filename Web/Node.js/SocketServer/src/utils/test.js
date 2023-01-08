@@ -1,6 +1,6 @@
-import mongoose, {mongo} from 'mongoose';
-import {getId, findUser} from '../server/db/User.js';
-import {addMessage, chatRecord, deleteMessage} from '../server/db/Message.js';
+import mongoose from 'mongoose';
+import { addMessage, deleteMessage } from '../server/db/Message.js';
+import { getId } from '../server/db/User.js';
 
 await mongoose.connect('mongodb://localhost:27017/Chat');
 

@@ -1,14 +1,14 @@
-import {User, Message, orFilter} from './index.js';
+import { Message, User, orFilter } from './index.js';
 
 export async function findUser(user, curUser) {
   try {
     const isFriends =
-      (await User.findOne({name: curUser}).populate('friends'))?.friends.filter(
-        (friend) => friend.name === user
-      ).length !== 0;
+      (
+        await User.findOne({ name: curUser }).populate('friends')
+      )?.friends.filter((friend) => friend.name === user).length !== 0;
 
-    const info = await User.findOne({name: user});
-    return {isFriends, info};
+    const info = await User.findOne({ name: user });
+    return { isFriends, info };
   } catch (err) {
     console.error(err);
   }
@@ -16,14 +16,14 @@ export async function findUser(user, curUser) {
 
 export async function findFriends(user) {
   try {
-    const list = (await User.findOne({name: user}).populate('friends'))
+    const list = (await User.findOne({ name: user }).populate('friends'))
         ?.friends,
       userId = await getId(user);
 
     return await Promise.all(
       list.map(async (friend) => {
         const res = await Message.find(orFilter(friend, userId))
-          .sort({time: -1})
+          .sort({ time: -1 })
           .limit(1);
 
         let message = '',
@@ -34,8 +34,8 @@ export async function findFriends(user) {
           time = res[0].time;
         }
 
-        const {name, face} = friend;
-        return {name, face, message, time};
+        const { name, face } = friend;
+        return { name, face, message, time };
       })
     );
   } catch (err) {
@@ -84,7 +84,7 @@ export async function addFriend(user, friend) {
 
 export async function getId(username) {
   try {
-    return User.findOne({name: username}, '_id');
+    return User.findOne({ name: username }, '_id');
   } catch (err) {
     console.error(err);
   }

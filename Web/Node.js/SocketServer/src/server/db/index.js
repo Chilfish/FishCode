@@ -1,5 +1,5 @@
-import mongoose, {Schema} from 'mongoose';
 import dotenv from 'dotenv';
+import mongoose, { Schema } from 'mongoose';
 
 dotenv.config();
 
@@ -17,15 +17,15 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
-  face: {type: String, default: 'default.png'},
+  face: { type: String, default: 'default.png' },
   registerTime: String,
-  addReq: [{type: Schema.Types.ObjectId, ref: 'users'}], // request of add friend
-  friends: [{type: Schema.Types.ObjectId, ref: 'users'}],
+  addReq: [{ type: Schema.Types.ObjectId, ref: 'users' }], // request of add friend
+  friends: [{ type: Schema.Types.ObjectId, ref: 'users' }],
 });
 
 const messageSchema = new Schema({
-  sender: {type: Schema.Types.ObjectId, ref: 'users'},
-  receiver: {type: Schema.Types.ObjectId, ref: 'users'},
+  sender: { type: Schema.Types.ObjectId, ref: 'users' },
+  receiver: { type: Schema.Types.ObjectId, ref: 'users' },
   message: String,
   time: String,
   // type: String,
@@ -35,8 +35,8 @@ const messageSchema = new Schema({
 export const orFilter = (user1, user2) => {
   return {
     $or: [
-      {sender: user1._id, receiver: user2._id},
-      {sender: user2._id, receiver: user1._id},
+      { sender: user1._id, receiver: user2._id },
+      { sender: user2._id, receiver: user1._id },
     ],
   };
 };

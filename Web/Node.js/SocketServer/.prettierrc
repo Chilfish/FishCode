@@ -1,0 +1,10 @@
+{
+  "tabWidth": 2,
+  "useTabs": false,
+  "singleQuote": true,
+  "semi": true,
+  "printWidth": 80,
+  "TrailingCooma": "es5",
+  "bracketSpacing": true,
+  "arrowParens": "always"
+}

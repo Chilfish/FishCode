@@ -1,6 +1,6 @@
-import {addFriend, addReq, findFriends, findUser} from './db/User.js';
-import {addMessage, chatRecord} from './db/Message.js';
-import {api} from '../socketApi.js';
+import { api } from '../socketApi.js';
+import { addMessage, chatRecord } from './db/Message.js';
+import { addFriend, addReq, findFriends, findUser } from './db/User.js';
 
 export function socketHandler(socket, curUser) {
   let chatTo = '';
@@ -29,13 +29,13 @@ export function socketHandler(socket, curUser) {
 
   socket.on(api.addReq, async (friend, callback) => {
     await addReq(curUser, friend).then((mes) => {
-      callback({mes});
+      callback({ mes });
     });
   });
 
   socket.on(api.addFriend, async (friend, callback) => {
     await addFriend(curUser, friend).then((mes) => {
-      callback({mes});
+      callback({ mes });
     });
   });
 
@@ -43,25 +43,25 @@ export function socketHandler(socket, curUser) {
     const userInfo = await findUser(res, curUser);
 
     if (!userInfo) {
-      return callback({userInfo: null, mes: 404});
+      return callback({ userInfo: null, mes: 404 });
     }
 
-    const {name, face} = userInfo.info;
+    const { name, face } = userInfo.info;
     callback({
       isFriend: userInfo.isFriends,
-      userInfo: {name, face},
+      userInfo: { name, face },
       mes: 200,
     });
   });
 
   socket.on(api.sendMessage, async (arg, callback) => {
-    const {receiver, message} = arg;
+    const { receiver, message } = arg;
 
     await addMessage(curUser, receiver, message).then((time) => {
       callback(time);
 
       socket.to(chatTo).emit(api.message, {
-        data: {receiver, message, time},
+        data: { receiver, message, time },
       });
     });
   });

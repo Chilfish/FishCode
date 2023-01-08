@@ -2,11 +2,11 @@
 <html lang="zh">
 
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />
-  <link rel="stylesheet" href="/dist/output.css" />
-  <link rel="icon" href="/public/img/logo.png" />
+        content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes"/>
+  <link rel="stylesheet" href="/dist/output.css"/>
+  <link rel="icon" href="/public/img/logo.png"/>
 
   <script defer src="/public/socket.io/socket.io.min.js"></script>
   <script defer>
@@ -21,150 +21,152 @@
 </head>
 
 <body class="w-screen h-screen flex bg-slate-900 text-white">
-  <div class="w-[90%] sm:w-5/6 h-5/6 m-auto flex rounded-xl bg-main-4 relative  transition-all">
+<div class="w-[90%] sm:w-5/6 h-5/6 m-auto flex rounded-xl bg-main-4 relative  transition-all">
 
-    <aside
-           class="w-full sm:w-[27rem] bg-main-4 rounded-xl sm:border-r-2 sm:rounded-l-xl sm:border-r-main-5 transition delay-500 ease-in-out">
-      <div class="h-1/10 flex justify-between p-4 mt-2 text-main-0 relative">
+  <aside
+      class="w-full sm:w-[27rem] bg-main-4 rounded-xl sm:border-r-2 sm:rounded-l-xl sm:border-r-main-5
+      transition delay-500 ease-in-out">
+    <div class="h-1/10 flex justify-between p-4 mt-2 text-main-0 relative">
 
-        <div id="more-page"
-             class="hidden absolute top-14 left-2 z-10 p-2 pb-0 w-1/2 sm:h-30 bg-main-5 rounded-xl drop-shadow-2xl text-white text-sm">
-          <ul class="flex flex-col">
-            <button id="logout-btn" class="btn flex items-center mb-2">
+      <div id="more-page"
+           class="hidden absolute top-14 left-2 z-10 p-2 pb-0 w-1/2 sm:h-30
+           bg-main-5 rounded-xl drop-shadow-2xl text-white text-sm">
+        <ul class="flex flex-col">
+          <button id="logout-btn" class="btn flex items-center mb-2">
               <span class="mx-2">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                      stroke="currentColor" class="w-6 h-6">
                   <path stroke-linecap="round" stroke-linejoin="round"
-                        d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
+                        d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75"/>
                 </svg>
               </span>
-              <span>Log out</span>
-            </button>
-          </ul>
-        </div>
+            <span>Log out</span>
+          </button>
+        </ul>
+      </div>
 
-        <span id="more-btn" class="py-1 hover:cursor-pointer hover:text-main-1">
+      <span id="more-btn" class="py-1 hover:cursor-pointer hover:text-main-1">
           <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
           </svg>
         </span>
 
-        <span class="mx-3 w-full relative">
+      <span class="mx-3 w-full relative">
           <label for="search"></label>
-          <input class="px-8" type="search" id="search" autocomplete="off" placeholder="Search" />
+          <input class="px-8" type="search" id="search" autocomplete="off" placeholder="Search"/>
 
           <span class="icon">
             <button id="search-btn" class="absolute top-2 left-2 hover:text-main-1">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                    stroke="currentColor" class="w-4 h-4">
                 <path stroke-linecap="round" stroke-linejoin="round"
-                      d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                      d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/>
               </svg>
             </button>
 
             <button id="cancel-btn" class="hidden absolute top-2 right-2 hover:text-main-1">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                    stroke="currentColor" class="w-4 h-4">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
               </svg>
 
             </button>
           </span>
         </span>
+    </div>
+
+    <ul id="chat-list" class="w-full max-h-[42rem] sm:max-h-[32rem] p-3 bg-main-4 rounded-xl overflow-auto"></ul>
+    <p id="search-404" class="hidden text-center text-xl mt-4">oh, User Not Found</p>
+
+    <ul id="search-res" class="p-3 hidden">
+      <li class="userCard flex w-full h-full relative">
+        <img src="" alt="user" class="w-11 rounded-[50%] mr-3 my-auto"/>
+        <div class="user my-auto min-w-0 w-[16rem]">
+          <div class="username w-fit max-w-[8rem] truncate"></div>
+          <button id="add-btn" class="btn p-2 absolute top-[0.6rem] right-5 text-sm">Add</button>
+        </div>
+      </li>
+    </ul>
+  </aside>
+
+  <main id="chat-box" class="hidden h-full w-full sm:flex flex-col justify-between">
+
+    <header class="h-16 flex justify-between p-4 bg-main-4 rounded-xl">
+      <div class="back sm:hidden">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+             stroke="currentColor" class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5"/>
+        </svg>
       </div>
 
-      <ul id="chat-list" class="w-full max-h-[42rem] sm:max-h-[32rem] p-3 bg-main-4 rounded-xl overflow-auto"></ul>
+      <div class="username text-xl"></div>
 
-      <p id="search-404" class="hidden text-center text-xl mt-4">oh, User Not Found</p>
+      <div id="chatInfo">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+             stroke="currentColor" class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round"
+                d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z"/>
+        </svg>
+      </div>
+    </header>
 
-      <ul id="search-res" class="p-3 hidden">
-        <li class="userCard flex w-full h-full relative">
-          <img src="" alt="user" class="w-11 rounded-[50%] mr-3 my-auto" />
-          <div class="user my-auto min-w-0 w-[16rem]">
-            <div class="username w-fit max-w-[8rem] truncate"></div>
-            <button id="add-btn" class="btn p-2 absolute top-[0.6rem] right-5 text-sm">Add</button>
-          </div>
-        </li>
-      </ul>
-    </aside>
+    <main id="chat-main"
+          class="h-[55rem] p-4 pb-0 overflow-auto relative flex flex-col bg-chat transition delay-500 ease-in"></main>
 
-    <main id="chat-box" class="hidden h-full w-full sm:flex flex-col justify-between">
+    <footer class="send min-h-14  flex items-center px-4">
+      <button id="sendFile" class="mr-3 my-auto">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+             stroke="currentColor" class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round"
+                d="M18.375 12.739l-7.693 7.693a4.5 4.5 0 01-6.364-6.364l10.94-10.94A3 3 0 1119.5 7.372L8.552 18.32m.009-.01l-.01.01m5.699-9.941l-7.81 7.81a1.5 1.5 0 002.112 2.13"/>
+        </svg>
+      </button>
 
-      <header class="h-16 flex justify-between p-4 bg-main-4 rounded-xl">
-        <div class="back sm:hidden">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-               stroke="currentColor" class="w-6 h-6">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
-          </svg>
-        </div>
+      <div class="textarea w-full min-h-14 py-2 mr-4 bg-main-4 ">
+        <label for="mes"></label><textarea
+          class="w-full max-h-40  border-0 bg-transparent focus:outline-none resize-none" rows="1" type="text"
+          autocomplete="off" id="mes" placeholder="Write a message..."></textarea>
+      </div>
 
-        <div class="username text-xl"></div>
+      <button id="face" class="mr-4 my-auto">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+             stroke="currentColor" class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round"
+                d="M15.182 15.182a4.5 4.5 0 01-6.364 0M21 12a9 9 0 11-18 0 9 9 0 0118 0zM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75zm-.375 0h.008v.015h-.008V9.75zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75zm-.375 0h.008v.015h-.008V9.75z"/>
+        </svg>
+      </button>
 
-        <div id="chatInfo">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-               stroke="currentColor" class="w-6 h-6">
-            <path stroke-linecap="round" stroke-linejoin="round"
-                  d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z" />
-          </svg>
-        </div>
-      </header>
+      <button id="send" class="m-auto text-main-1">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+             stroke="currentColor" class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round"
+                d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5"/>
+        </svg>
+      </button>
+    </footer>
+  </main>
+</div>
 
-      <main id="chat-main"
-            class="h-[55rem] p-4 pb-0 overflow-auto relative flex flex-col bg-chat transition delay-500 ease-in"></main>
+<template id="userCard">
+  <li data-name>
+    <a href="" class="userCard flex w-full h-full">
+      <img src="" alt="avatar" class="w-11 rounded-[50%] mr-3 my-auto"/>
+      <div class="user my-auto min-w-0 w-full relative">
+        <div class="username w-fit max-w-[8rem] truncate"></div>
+        <div class="last-time absolute top-0 right-2 text-sm"></div>
+        <div class="chatDes text-gray-300 text-xs mt-1 truncate"></div>
+      </div>
+    </a>
+  </li>
+</template>
 
-      <footer class="send min-h-14  flex items-center px-4">
-        <button id="sendFile" class="mr-3 my-auto">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-               stroke="currentColor" class="w-6 h-6">
-            <path stroke-linecap="round" stroke-linejoin="round"
-                  d="M18.375 12.739l-7.693 7.693a4.5 4.5 0 01-6.364-6.364l10.94-10.94A3 3 0 1119.5 7.372L8.552 18.32m.009-.01l-.01.01m5.699-9.941l-7.81 7.81a1.5 1.5 0 002.112 2.13" />
-          </svg>
-        </button>
-
-        <div class="textarea w-full min-h-14 py-2 mr-4 bg-main-4 ">
-          <textarea class="w-full max-h-40  border-0 bg-transparent focus:outline-none resize-none" rows="1" type="text"
-                    autocomplete="off" id="mes" placeholder="Write a message..."></textarea>
-        </div>
-
-        <button id="face" class="mr-4 my-auto">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-               stroke="currentColor" class="w-6 h-6">
-            <path stroke-linecap="round" stroke-linejoin="round"
-                  d="M15.182 15.182a4.5 4.5 0 01-6.364 0M21 12a9 9 0 11-18 0 9 9 0 0118 0zM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75zm-.375 0h.008v.015h-.008V9.75zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75zm-.375 0h.008v.015h-.008V9.75z" />
-          </svg>
-        </button>
-
-        <button id="send" class="m-auto text-main-1">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-               stroke="currentColor" class="w-6 h-6">
-            <path stroke-linecap="round" stroke-linejoin="round"
-                  d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
-          </svg>
-        </button>
-      </footer>
-    </main>
-  </div>
-
-  <template id="userCard">
-    <li data-name>
-      <a href="" class="userCard flex w-full h-full">
-        <img src="" alt="avatar" class="w-11 rounded-[50%] mr-3 my-auto" />
-        <div class="user my-auto min-w-0 w-full relative">
-          <div class="username w-fit max-w-[8rem] truncate"></div>
-          <div class="last-time absolute top-0 right-2 text-sm"></div>
-          <div class="chatDes text-gray-300 text-xs mt-1 truncate"></div>
-        </div>
-      </a>
-    </li>
-  </template>
-
-  <template id="chatMes">
-    <div class="first-time"></div>
-    <section class="w-fit max-w-md mb-4 py-2 px-4 rounded-lg">
-      <p class="mb-1"></p>
-      <div class="time" data-time></div>
-    </section>
-  </template>
+<template id="chatMes">
+  <div class="first-time"></div>
+  <section class="w-fit max-w-md mb-4 py-2 px-4 rounded-lg">
+    <p class="mb-1"></p>
+    <div class="time" data-time></div>
+  </section>
+</template>
 
 </body>
 

@@ -150,6 +150,16 @@
     "description": "Markdown 初始化",
     "prefix": "bt"
   },
+  "Mermaid": {
+    "body": [
+      "",
+      "```mermaid",
+      "graph TB",
+      "",
+      "```"
+    ],
+    "prefix": "mermaid"
+  },
   "php": {
     "body": [
       "```php {.line-numbers}",
@@ -194,5 +204,13 @@
       "```"
     ],
     "prefix": "ts"
+  },
+  "todo": {
+    "body": "- :white_large_square: ",
+    "prefix": "todo"
+  },
+  "done": {
+    "body": "- :white_check_mark: ",
+    "prefix": "done"
   }
 }

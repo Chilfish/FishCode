@@ -1,6 +1,6 @@
-import {Message, User, orFilter} from './index.js';
-import {parseDate} from '../../utils/index.js';
-import {getId} from './User.js';
+import { parseDate } from '../../utils/index.js';
+import { getId } from './User.js';
+import { Message, User, orFilter } from './index.js';
 
 export async function addMessage(sender, receiver, message) {
   try {
@@ -8,7 +8,7 @@ export async function addMessage(sender, receiver, message) {
       receiverId = await getId(receiver),
       time = parseDate().fullTime;
     message.replace(/[<>&"]/g, function (c) {
-      return {'<': '&lt;', '>': '&gt;', '&': '&amp;', '"': '&quot;'}[c];
+      return { '<': '&lt;', '>': '&gt;', '&': '&amp;', '"': '&quot;' }[c];
     });
     console.log(message);
 

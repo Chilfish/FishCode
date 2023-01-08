@@ -1,14 +1,13 @@
+import { api } from '../../socketApi.js';
 import {
-  curUser,
-  loadList,
   chatList,
   chatMain,
   chatRecord,
+  curUser,
+  loadList,
   messageHandler,
   socket,
-  loadFriendsList,
 } from './loadData.js';
-import {api} from '../../socketApi.js';
 
 const chatBox = $('#chat-box');
 let friends;

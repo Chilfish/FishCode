@@ -10,7 +10,7 @@ const url = 'http://localhost:3000';
 const config = (data) => {
   return {
     body: JSON.stringify(data),
-    headers: {'content-type': 'application/json'},
+    headers: { 'content-type': 'application/json' },
     method: 'POST',
   };
 };
@@ -18,13 +18,13 @@ const config = (data) => {
 async function submit() {
   const name = username.value;
 
-  await (await fetch(`${url}/login`, config({name, register: false})))
+  await (await fetch(`${url}/login`, config({ name, register: false })))
     .json()
     .then(async (res) => {
       let thisToken = res.token;
       if (res.newUser) {
         if (confirm('username not found, sure continue to register?')) {
-          await (await fetch(`${url}/login`, config({name, register: true})))
+          await (await fetch(`${url}/login`, config({ name, register: true })))
             .json()
             .then((res) => {
               thisToken = res.token;

@@ -1,17 +1,17 @@
-import express from 'express';
 import cors from 'cors';
-import {createServer} from 'http';
-import {Server} from 'socket.io';
-import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+import express from 'express';
+import { createServer } from 'http';
+import mongoose from 'mongoose';
+import { Server } from 'socket.io';
 
-import {login} from './db/auth.js';
-import {socketHandler} from './socket.js';
-import {Token} from '../utils/JWT.js';
+import { Token } from '../utils/JWT.js';
+import { login } from './db/auth.js';
+import { socketHandler } from './socket.js';
 
 const app = express();
 const httpServer = createServer(app);
-const io = new Server(httpServer, {cors: true});
+const io = new Server(httpServer, { cors: true });
 
 dotenv.config();
 const port = process.env.SOCKET_PORT || 3000;
@@ -20,7 +20,7 @@ const dbUri = process.env.MONGODB || 'mongodb://localhost:27017/Chat';
 app
   .use(cors())
   .use(express.json())
-  .use(express.urlencoded({extended: false}));
+  .use(express.urlencoded({ extended: false }));
 
 io.on('connection', async (socket) => {
   let token = socket.request._query.token,
@@ -46,12 +46,12 @@ io.on('connection', async (socket) => {
 
 app.post('/login', async (req, res) => {
   console.log(req.body);
-  const {name, register} = req.body;
+  const { name, register } = req.body;
   let newUser = false;
 
   await login(name, register).then((user) => {
     if (user.mes === 404) newUser = true;
-    res.json({newUser, token: user.token});
+    res.json({ newUser, token: user.token });
   });
 });
 

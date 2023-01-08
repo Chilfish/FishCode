@@ -1,5 +1,5 @@
-import {parseDate} from '../../utils/index.js';
-import {api} from '../../socketApi.js';
+import { api } from '../../socketApi.js';
+import { parseDate } from '../../utils/index.js';
 
 const socketUrl = 'ws://localhost:3000';
 export const socket = await io.connect(socketUrl, {
@@ -144,7 +144,7 @@ export function messageHandler() {
 
   const _sendMes = () => {
     const message = mesInput.value;
-    const data = {receiver, message};
+    const data = { receiver, message };
     const check = new Set(message);
     if ((check.size === 1 && check.has('\n')) || !check.size) {
       return;

@@ -1,8 +1,8 @@
-import {v4 as uuid} from 'uuid';
+import { v4 as uuid } from 'uuid';
 
-import {User} from './index.js';
-import {Token} from '../../utils/JWT.js';
-import {parseDate} from '../../utils/index.js';
+import { Token } from '../../utils/JWT.js';
+import { parseDate } from '../../utils/index.js';
+import { User } from './index.js';
 
 /**
  * user login handler
@@ -25,14 +25,14 @@ export async function login(user, isNew) {
       userInfo = newUser;
       await newUser.save();
     } else {
-      userInfo = await User.findOne({name: user});
+      userInfo = await User.findOne({ name: user });
       if (!userInfo) {
-        return {mes: 404, token};
+        return { mes: 404, token };
       }
     }
 
     token = await tokenHandler(userInfo);
-    return {mes: 200, token};
+    return { mes: 200, token };
   } catch (err) {
     console.error(err);
   }
@@ -44,7 +44,7 @@ export async function login(user, isNew) {
  */
 async function tokenHandler(user) {
   try {
-    const accessToken = await Token.encrypt({name: user});
+    const accessToken = await Token.encrypt({ name: user });
     return Promise.resolve(accessToken);
   } catch (err) {
     return Promise.reject(err);
